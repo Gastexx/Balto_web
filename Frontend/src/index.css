@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+:root {
+  --balto-midnight: #0a2540;
+  --balto-action: #0055bb;
+  --balto-soft: #edf4ff;
+  --balto-ink: #0f172a;
+  --balto-muted: #5b6472;
+  --balto-border: #d8e0ec;
+  --balto-surface: #ffffff;
+  --balto-bg: #f7f9fc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--balto-bg);
+  color: var(--balto-ink);
+}
+
+#root {
+  min-height: 100vh;
+}

@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+:root {
+  --balto-midnight: #0A2540;
+  --balto-action: #0055BB;
+  --balto-bg: #F5F7FB;
+  --balto-card: #FFFFFF;
+  --balto-text: #0F172A;
+  --balto-muted: #64748B;
+  --balto-border: #E2E8F0;
+}
