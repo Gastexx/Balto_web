@@ -9,6 +9,7 @@ import {
   Briefcase,
   Wallet,
 } from "lucide-react";
+import logoMark from "../assets/balto.png";
 
 function getValue(field, fallback = "") {
   if (field == null) return fallback;
@@ -105,8 +106,17 @@ export function FeaturesSection({ features }) {
       : fallbackFeatures;
 
   return (
-    <section id="features" className="py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="features" className="relative overflow-hidden py-20">
+      <div className="pointer-events-none absolute inset-0">
+        <img
+          src={logoMark}
+          alt=""
+          aria-hidden="true"
+          className="absolute -left-16 bottom-0 hidden h-72 w-72 object-contain opacity-[0.025] lg:block"
+        />
+      </div>
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           className="mx-auto max-w-2xl text-center"
           variants={fadeUp}
@@ -114,9 +124,18 @@ export function FeaturesSection({ features }) {
           whileInView="visible"
           viewport={{ once: true, amount: 0.35 }}
         >
-          <span className="text-sm font-medium text-[var(--balto-action)]">
-            Beneficios
-          </span>
+          <div className="inline-flex items-center gap-2 rounded-full border border-[var(--balto-border)] bg-white px-4 py-2 shadow-sm">
+            <img
+              src={logoMark}
+              alt=""
+              aria-hidden="true"
+              className="h-4 w-4 object-contain opacity-80"
+            />
+
+            <span className="text-sm font-medium text-[var(--balto-action)]">
+              Beneficios
+            </span>
+          </div>
 
           <h2 className="mt-3 text-3xl font-semibold text-[var(--balto-midnight)] sm:text-4xl">
             Diseñado para que trabajar sea más simple.
@@ -139,17 +158,24 @@ export function FeaturesSection({ features }) {
             <motion.article
               key={`${title}-${index}`}
               variants={fadeUp}
-              className="rounded-3xl border border-[var(--balto-border)] bg-white p-6 shadow-sm"
+              className="group relative overflow-hidden rounded-3xl border border-[var(--balto-border)] bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg"
             >
-              <div className="inline-flex rounded-2xl bg-[var(--balto-soft)] p-3 text-[var(--balto-action)]">
+              <img
+                src={logoMark}
+                alt=""
+                aria-hidden="true"
+                className="pointer-events-none absolute -right-8 -bottom-10 h-28 w-28 object-contain opacity-[0.025] transition duration-300 group-hover:opacity-[0.055]"
+              />
+
+              <div className="relative inline-flex rounded-2xl bg-[var(--balto-soft)] p-3 text-[var(--balto-action)]">
                 <Icon size={22} />
               </div>
 
-              <h3 className="mt-5 text-lg font-semibold text-[var(--balto-midnight)]">
+              <h3 className="relative mt-5 text-lg font-semibold text-[var(--balto-midnight)]">
                 {title}
               </h3>
 
-              <p className="mt-3 text-sm leading-6 text-[var(--balto-muted)]">
+              <p className="relative mt-3 text-sm leading-6 text-[var(--balto-muted)]">
                 {text}
               </p>
             </motion.article>

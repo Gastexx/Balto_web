@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Check, Sparkles, ArrowRight, Star } from "lucide-react";
+import logoWhite from "../assets/Balto_Blanco.png";
 
 function pick(obj, keys, fallback = "") {
   if (!obj || typeof obj !== "object") return fallback;
@@ -128,6 +129,8 @@ export function PricingSection({ plans = [], config = {} }) {
         <div className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-[var(--balto-action)]/10 blur-[120px]" />
         <div className="absolute right-0 top-1/3 h-52 w-52 rounded-full bg-cyan-400/5 blur-[100px]" />
         <div className="absolute inset-0 opacity-[0.06] [background-image:radial-gradient(#ffffff_1px,transparent_1px)] [background-size:22px_22px]" />
+
+
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -140,6 +143,14 @@ export function PricingSection({ plans = [], config = {} }) {
           viewport={{ once: true, amount: 0.25 }}
         >
           <span className="inline-flex items-center gap-2 rounded-full border border-[var(--balto-action)]/25 bg-[var(--balto-action)]/10 px-4 py-1.5 text-sm font-medium text-[var(--balto-action)] backdrop-blur-md">
+            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white/10">
+              <img
+                src={logoWhite}
+                alt=""
+                aria-hidden="true"
+                className="h-3.5 w-3.5 object-contain opacity-90"
+              />
+            </span>
             <Sparkles size={14} />
             {badge}
           </span>
@@ -176,6 +187,8 @@ export function PricingSection({ plans = [], config = {} }) {
                       : "border-white/10 bg-white/[0.045] shadow-[0_20px_60px_rgba(0,0,0,0.35)] backdrop-blur-xl"
                   }`}
                 >
+
+
                   {/* GLOW CENTRAL */}
                   {featured && (
                     <>
@@ -199,12 +212,13 @@ export function PricingSection({ plans = [], config = {} }) {
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <span
-                          className={`inline-flex items-center rounded-full px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] ${
+                          className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] ${
                             featured
                               ? "bg-white/10 text-white"
                               : "bg-[var(--balto-action)]/10 text-[var(--balto-action)]"
                           }`}
                         >
+
                           Plan {index + 1}
                         </span>
 

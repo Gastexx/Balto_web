@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { MessageSquareQuote, Star, Quote } from "lucide-react";
+import logoMark from "../assets/balto.png";
 
 function normalizeTestimonial(item, index = 0) {
   return {
@@ -81,7 +82,16 @@ export function TestimonialsSection({ testimonials = [], config = {} }) {
       id="testimonials"
       className="relative overflow-hidden py-20 sm:py-24"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="pointer-events-none absolute inset-0">
+        <img
+          src={logoMark}
+          alt=""
+          aria-hidden="true"
+          className="absolute -right-16 top-10 hidden h-72 w-72 object-contain opacity-[0.025] lg:block"
+        />
+      </div>
+
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* HEADER */}
         <motion.div
           className="mx-auto max-w-2xl text-center"
@@ -92,6 +102,16 @@ export function TestimonialsSection({ testimonials = [], config = {} }) {
         >
           <div className="inline-flex items-center gap-2 rounded-full border border-[var(--balto-border)] bg-white px-4 py-2 shadow-sm">
             <MessageSquareQuote className="h-4 w-4 text-[var(--balto-action)]" />
+
+            <span className="h-4 w-px bg-slate-200" />
+
+            <img
+              src={logoMark}
+              alt=""
+              aria-hidden="true"
+              className="h-4 w-4 object-contain opacity-80"
+            />
+
             <span className="text-sm font-medium text-[var(--balto-action)]">
               {badge}
             </span>
@@ -119,10 +139,17 @@ export function TestimonialsSection({ testimonials = [], config = {} }) {
               <motion.article
                 key={item.id}
                 variants={fadeUp}
-                className="group relative flex h-full flex-col rounded-3xl border border-[var(--balto-border)] bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1.5 hover:shadow-xl"
+                className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-[var(--balto-border)] bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1.5 hover:shadow-xl"
               >
+                <img
+                  src={logoMark}
+                  alt=""
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -right-7 -bottom-9 h-28 w-28 object-contain opacity-[0.025] transition duration-300 group-hover:opacity-[0.055]"
+                />
+
                 {/* ICONO DECORATIVO */}
-                <div className="mb-5 flex items-center justify-between">
+                <div className="relative mb-5 flex items-center justify-between">
                   <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--balto-action)]/10">
                     <Quote className="h-5 w-5 text-[var(--balto-action)]" />
                   </div>
@@ -131,14 +158,20 @@ export function TestimonialsSection({ testimonials = [], config = {} }) {
                 </div>
 
                 {/* TEXTO */}
-                <p className="flex-1 text-[15px] leading-7 text-slate-700 sm:text-base">
+                <p className="relative flex-1 text-[15px] leading-7 text-slate-700 sm:text-base">
                   “{item.quote}”
                 </p>
 
                 {/* FOOTER */}
-                <div className="mt-6 flex items-center gap-4 border-t border-slate-100 pt-5">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--balto-midnight)] text-sm font-semibold text-white shadow-sm">
-                    {getInitials(item.name)}
+                <div className="relative mt-6 flex items-center gap-4 border-t border-slate-100 pt-5">
+                  <div className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-[var(--balto-midnight)] text-sm font-semibold text-white shadow-sm">
+                    <img
+                      src={logoMark}
+                      alt=""
+                      aria-hidden="true"
+                      className="absolute h-8 w-8 object-contain opacity-[0.12]"
+                    />
+                    <span className="relative">{getInitials(item.name)}</span>
                   </div>
 
                   <div className="min-w-0">
@@ -154,16 +187,23 @@ export function TestimonialsSection({ testimonials = [], config = {} }) {
             ))
           ) : (
             <motion.div variants={fadeUp} className="lg:col-span-3">
-              <div className="rounded-3xl border border-dashed border-[var(--balto-border)] bg-white px-6 py-12 text-center shadow-sm">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--balto-action)]/10">
+              <div className="relative overflow-hidden rounded-3xl border border-dashed border-[var(--balto-border)] bg-white px-6 py-12 text-center shadow-sm">
+                <img
+                  src={logoMark}
+                  alt=""
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -right-8 -bottom-10 h-32 w-32 object-contain opacity-[0.025]"
+                />
+
+                <div className="relative mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--balto-action)]/10">
                   <MessageSquareQuote className="h-6 w-6 text-[var(--balto-action)]" />
                 </div>
 
-                <h3 className="mt-4 text-lg font-semibold text-[var(--balto-midnight)]">
+                <h3 className="relative mt-4 text-lg font-semibold text-[var(--balto-midnight)]">
                   Aún no hay testimonios cargados
                 </h3>
 
-                <p className="mt-2 text-base text-[var(--balto-muted)]">
+                <p className="relative mt-2 text-base text-[var(--balto-muted)]">
                   Todavía no hay testimonios disponibles para mostrar en esta
                   sección.
                 </p>

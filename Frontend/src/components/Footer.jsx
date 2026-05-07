@@ -22,6 +22,7 @@ function parseFooterLinks(value, fallback = []) {
 
 export function Footer({ config = {} }) {
   const brand = config?.footer_brand?.valor || "BALTO";
+
   const subtitle =
     config?.footer_subtitle?.valor ||
     "Sistema contable y administrativo";
@@ -31,7 +32,10 @@ export function Footer({ config = {} }) {
     "Una solución orientada a orden, control y crecimiento.";
 
   const email = config?.footer_email?.valor || "demo@balto.com";
-  const phone = config?.footer_phone?.valor || "+54 9 3492 00-0000";
+
+  const phone =
+    config?.footer_phone?.valor || "+54 9 3564 67-2341";
+
   const address = config?.footer_address?.valor || "Argentina";
 
   const copyright =
@@ -67,10 +71,17 @@ export function Footer({ config = {} }) {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(0,85,187,0.12),transparent_30%)]" />
         <div className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-[var(--balto-action)]/10 blur-[120px]" />
         <div className="absolute inset-0 opacity-[0.04] [background-image:radial-gradient(#ffffff_1px,transparent_1px)] [background-size:22px_22px]" />
+
+        {/* LOGO DISCRETO EN FONDO */}
+        <img
+          src={logo}
+          alt=""
+          aria-hidden="true"
+          className="absolute -right-16 top-8 hidden h-80 w-80 object-contain opacity-[0.025] lg:block"
+        />
       </div>
 
       <div className="relative mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1.3fr_1fr_1fr] lg:px-8">
-        
         {/* BRAND */}
         <div>
           <div className="flex items-center gap-3">
@@ -86,7 +97,9 @@ export function Footer({ config = {} }) {
               <p className="text-sm font-semibold tracking-wide text-white">
                 {brand}
               </p>
-              <p className="text-xs text-white/50">{subtitle}</p>
+              <p className="text-xs text-white/50">
+                {subtitle}
+              </p>
             </div>
           </div>
 
@@ -98,9 +111,11 @@ export function Footer({ config = {} }) {
           <div className="mt-6 flex items-center gap-5">
             <div
               onClick={() =>
-                window.open("https://wa.me/5493492000000", "_blank")
+                window.open("https://wa.me/5493564672341", "_blank")
               }
               className="cursor-pointer text-white/60 text-xl transition hover:text-[var(--balto-action)] hover:scale-110"
+              title="WhatsApp"
+              aria-label="Abrir WhatsApp de Balto"
             >
               <i className="fa-brands fa-whatsapp"></i>
             </div>
@@ -113,6 +128,8 @@ export function Footer({ config = {} }) {
                 )
               }
               className="cursor-pointer text-white/60 text-xl transition hover:text-[var(--balto-action)] hover:scale-110"
+              title="Instagram"
+              aria-label="Abrir Instagram de Balto"
             >
               <i className="fa-brands fa-instagram"></i>
             </div>
@@ -154,9 +171,17 @@ export function Footer({ config = {} }) {
       </div>
 
       {/* BOTTOM */}
-      <div className="border-t border-white/10">
+      <div className="relative border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-6 text-sm text-white/50 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
-          <p>{copyright}</p>
+          <div className="flex items-center gap-2">
+            <img
+              src={logo}
+              alt=""
+              aria-hidden="true"
+              className="h-4 w-4 object-contain opacity-45"
+            />
+            <p>{copyright}</p>
+          </div>
 
           <div className="flex gap-5">
             {legalLinks.map((link) => (
