@@ -109,7 +109,7 @@ export function TestimonialsSection({ testimonials = TESTIMONIALS, config = {} }
   return (
     <section
       id="testimonials"
-      className="relative isolate overflow-hidden bg-[#f7f9fc] py-20 sm:py-24"
+      className="relative isolate overflow-hidden bg-[#f7f9fc] py-20 sm:py-10"
     >
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white to-transparent" />

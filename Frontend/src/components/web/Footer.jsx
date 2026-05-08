@@ -1,9 +1,12 @@
+import { useEffect, useState } from "react";
+import { ChevronUp } from "lucide-react";
 import logo from "../../imagenes/Balto_Blanco.png";
 
 const BRAND = "BALTO";
 const SUBTITLE = "Sistema contable y administrativo";
 const DESCRIPTION = "Una solución orientada a orden, control y crecimiento.";
-const EMAIL = "baltosistemascontables@gmail.com";const PHONE = "+54 9 3564 67-2341";
+const EMAIL = "baltosistemascontables@gmail.com";
+const PHONE = "+54 9 3564 67-2341";
 const ADDRESS = "Argentina";
 const COPYRIGHT = "© 2026 Balto. Todos los derechos reservados.";
 
@@ -19,6 +22,23 @@ const LEGAL_LINKS = [
 ];
 
 export function Footer() {
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 420);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <footer
       id="contacto"
@@ -159,6 +179,20 @@ export function Footer() {
           </div>
         </div>
       </div>
+
+<button
+  type="button"
+  onClick={scrollToTop}
+  aria-label="Volver arriba"
+  title="Volver arriba"
+  className={`fixed bottom-5 right-5 z-[60] flex h-12 w-12 items-center justify-center rounded-2xl border border-white/70 bg-[var(--balto-action)] text-white shadow-[0_18px_42px_rgba(0,85,187,0.32)] ring-1 ring-[rgba(255,255,255,0.28)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:bg-white hover:text-[var(--balto-action)] hover:shadow-[0_22px_55px_rgba(10,37,64,0.30)] focus:outline-none focus:ring-4 focus:ring-[rgba(0,85,187,0.20)] sm:bottom-7 sm:right-7 ${
+    showScrollTop
+      ? "translate-y-0 opacity-100 pointer-events-auto"
+      : "translate-y-4 opacity-0 pointer-events-none"
+  }`}
+>
+  <ChevronUp className="h-5 w-5" strokeWidth={2.4} />
+</button>
     </footer>
   );
 }

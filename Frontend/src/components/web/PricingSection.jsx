@@ -120,7 +120,7 @@ export function PricingSection({ plans = [], config = {} }) {
   return (
     <section
       id="pricing"
-      className="relative isolate overflow-hidden bg-[#04070d] py-24 sm:py-28"
+      className="relative isolate overflow-hidden bg-[#04070d] py-24 sm:py-10"
     >
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(0,85,187,0.18),transparent_32%),radial-gradient(circle_at_bottom,rgba(0,85,187,0.10),transparent_34%)]" />
