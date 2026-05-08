@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Check, Sparkles, ArrowRight, Star } from "lucide-react";
-import logoWhite from "../../imagenes/balto.png";
+import logoWhite from "../../imagenes/Balto_Blanco.png";
 
 function pick(obj, keys, fallback = "") {
   if (!obj || typeof obj !== "object") return fallback;
@@ -145,14 +145,7 @@ export function PricingSection({ plans = [], config = {} }) {
           viewport={{ once: true, amount: 0.25 }}
         >
           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 text-sm font-medium text-white backdrop-blur-xl">
-            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/10 ring-1 ring-white/10">
-              <img
-                src={logoWhite}
-                alt=""
-                aria-hidden="true"
-                className="h-3.5 w-3.5 object-contain opacity-90"
-              />
-            </span>
+
             <Sparkles size={14} className="text-[var(--balto-action)]" />
             {badge}
           </span>
@@ -161,7 +154,7 @@ export function PricingSection({ plans = [], config = {} }) {
             {title}
           </h2>
 
-          <p className="mx-auto mt-5 max-w-2xl text-[15px] leading-7 text-white/[0.65] sm:text-base">
+          <p className="mx-auto mt-5  text-[15px] leading-7 text-white/[0.65] sm:text-base">
             {description}
           </p>
         </motion.div>
@@ -188,12 +181,7 @@ export function PricingSection({ plans = [], config = {} }) {
                       : "border-white/10 bg-white/[0.045] shadow-[0_22px_66px_rgba(0,0,0,0.34)] backdrop-blur-xl hover:bg-white/[0.065]"
                   }`}
                 >
-                  <img
-                    src={logoWhite}
-                    alt=""
-                    aria-hidden="true"
-                    className="pointer-events-none absolute -bottom-12 -right-12 h-36 w-36 object-contain opacity-[0.02] transition duration-300 group-hover:opacity-[0.045]"
-                  />
+
 
                   {featured && (
                     <>

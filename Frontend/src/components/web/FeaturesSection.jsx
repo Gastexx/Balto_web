@@ -106,7 +106,7 @@ export function FeaturesSection({ features }) {
       : fallbackFeatures;
 
   return (
-    <section id="features" className="relative isolate overflow-hidden bg-white py-20 sm:py-24">
+    <section id="features" className="relative isolate overflow-hidden bg-white py-20 sm:py-10">
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#f7f9fc] to-white" />
         <div className="absolute -left-28 top-20 h-80 w-80 rounded-full bg-[rgba(0,85,187,0.06)] blur-[125px]" />

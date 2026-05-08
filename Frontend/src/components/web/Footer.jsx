@@ -1,66 +1,24 @@
-import { useMemo } from "react";
-import logo from "../../imagenes/balto.png";
+import logo from "../../imagenes/Balto_Blanco.png";
 
-function parseFooterLinks(value, fallback = []) {
-  if (!value) return fallback;
+const BRAND = "BALTO";
+const SUBTITLE = "Sistema contable y administrativo";
+const DESCRIPTION = "Una solución orientada a orden, control y crecimiento.";
+const EMAIL = "baltosistemascontables@gmail.com";const PHONE = "+54 9 3564 67-2341";
+const ADDRESS = "Argentina";
+const COPYRIGHT = "© 2026 Balto. Todos los derechos reservados.";
 
-  try {
-    const parsed = typeof value === "string" ? JSON.parse(value) : value;
+const PRODUCT_LINKS = [
+  { label: "Beneficios", href: "#features" },
+  { label: "Planes", href: "#pricing" },
+  { label: "Opiniones", href: "#testimonials" },
+];
 
-    if (!Array.isArray(parsed)) return fallback;
+const LEGAL_LINKS = [
+  { label: "Privacidad", href: "#" },
+  { label: "Términos", href: "#" },
+];
 
-    return parsed
-      .map((item) => ({
-        label: String(item?.label ?? "").trim(),
-        href: String(item?.href ?? "").trim(),
-      }))
-      .filter((item) => item.label && item.href);
-  } catch {
-    return fallback;
-  }
-}
-
-export function Footer({ config = {} }) {
-  const brand = config?.footer_brand?.valor || "BALTO";
-
-  const subtitle =
-    config?.footer_subtitle?.valor ||
-    "Sistema contable y administrativo";
-
-  const description =
-    config?.footer_description?.valor ||
-    "Una solución orientada a orden, control y crecimiento.";
-
-  const email = config?.footer_email?.valor || "demo@balto.com";
-
-  const phone =
-    config?.footer_phone?.valor || "+54 9 3564 67-2341";
-
-  const address = config?.footer_address?.valor || "Argentina";
-
-  const copyright =
-    config?.footer_copyright?.valor ||
-    "© 2026 Balto. Todos los derechos reservados.";
-
-  const legalLinks = useMemo(
-    () =>
-      parseFooterLinks(config?.footer_legal_links?.valor, [
-        { label: "Privacidad", href: "#" },
-        { label: "Términos", href: "#" },
-      ]),
-    [config]
-  );
-
-  const productLinks = useMemo(
-    () =>
-      parseFooterLinks(config?.footer_product_links?.valor, [
-        { label: "Beneficios", href: "#features" },
-        { label: "Planes", href: "#pricing" },
-        { label: "Opiniones", href: "#testimonials" },
-      ]),
-    [config]
-  );
-
+export function Footer() {
   return (
     <footer
       id="contacto"
@@ -93,16 +51,16 @@ export function Footer({ config = {} }) {
 
               <div>
                 <p className="text-sm font-semibold tracking-wide text-white">
-                  {brand}
+                  {BRAND}
                 </p>
                 <p className="text-xs text-white/50">
-                  {subtitle}
+                  {SUBTITLE}
                 </p>
               </div>
             </div>
 
             <p className="mt-5 max-w-md text-sm leading-6 text-white/[0.62]">
-              {description}
+              {DESCRIPTION}
             </p>
 
             <div className="mt-7 flex items-center gap-3">
@@ -141,7 +99,7 @@ export function Footer({ config = {} }) {
             </h4>
 
             <ul className="mt-5 space-y-3 text-sm text-white/[0.62]">
-              {productLinks.map((link) => (
+              {PRODUCT_LINKS.map((link) => (
                 <li key={`${link.label}-${link.href}`}>
                   <a
                     href={link.href}
@@ -161,16 +119,16 @@ export function Footer({ config = {} }) {
 
             <ul className="mt-5 space-y-3 text-sm text-white/[0.62]">
               <li>
-                <a className="transition hover:text-white" href={`mailto:${email}`}>
-                  {email}
+                <a className="transition hover:text-white" href={`mailto:${EMAIL}`}>
+                  {EMAIL}
                 </a>
               </li>
               <li>
-                <a className="transition hover:text-white" href={`tel:${phone.replace(/\s/g, "")}`}>
-                  {phone}
+                <a className="transition hover:text-white" href={`tel:${PHONE.replace(/\s/g, "")}`}>
+                  {PHONE}
                 </a>
               </li>
-              <li>{address}</li>
+              <li>{ADDRESS}</li>
             </ul>
           </div>
         </div>
@@ -185,11 +143,11 @@ export function Footer({ config = {} }) {
               aria-hidden="true"
               className="h-4 w-4 object-contain opacity-45"
             />
-            <p>{copyright}</p>
+            <p>{COPYRIGHT}</p>
           </div>
 
           <div className="flex flex-wrap gap-x-5 gap-y-2">
-            {legalLinks.map((link) => (
+            {LEGAL_LINKS.map((link) => (
               <a
                 key={`${link.label}-${link.href}`}
                 href={link.href}

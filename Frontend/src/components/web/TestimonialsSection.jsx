@@ -2,6 +2,35 @@ import { motion } from "framer-motion";
 import { MessageSquareQuote, Star, Quote } from "lucide-react";
 import logoMark from "../../imagenes/balto.png";
 
+const BADGE = "Opiniones";
+const TITLE = "Equipos que ya trabajan con más claridad.";
+const DESCRIPTION =
+  "Una propuesta pensada para simplificar la operación real, no para sumar complejidad.";
+
+const TESTIMONIALS = [
+  {
+    id: 1,
+    name: "Laura Gómez",
+    role: "Contadora",
+    quote:
+      "Balto nos permitió ordenar la operación de varios clientes desde un único lugar. La curva de aprendizaje es casi nula.",
+  },
+  {
+    id: 2,
+    name: "Martín Ríos",
+    role: "Dueño de PyME",
+    quote:
+      "Antes perdíamos horas buscando datos entre planillas. Ahora todo está en un sistema y los reportes salen solos.",
+  },
+  {
+    id: 3,
+    name: "Sofía Herrera",
+    role: "Administradora",
+    quote:
+      "Lo que más valoro es la claridad de la interfaz. Cualquier persona del equipo puede usarlo sin capacitación especial.",
+  },
+];
+
 function normalizeTestimonial(item, index = 0) {
   return {
     id: item?.id ?? index,
@@ -63,18 +92,19 @@ function StarsRow() {
   );
 }
 
-export function TestimonialsSection({ testimonials = [], config = {} }) {
-  const normalizedTestimonials = Array.isArray(testimonials)
-    ? testimonials.map((item, index) => normalizeTestimonial(item, index))
+export function TestimonialsSection({ testimonials = TESTIMONIALS, config = {} }) {
+  const sourceTestimonials =
+    Array.isArray(testimonials) && testimonials.length > 0
+      ? testimonials
+      : TESTIMONIALS;
+
+  const normalizedTestimonials = Array.isArray(sourceTestimonials)
+    ? sourceTestimonials.map((item, index) => normalizeTestimonial(item, index))
     : [];
 
-  const badge = config?.testimonials_badge?.valor || "Opiniones";
-  const title =
-    config?.testimonials_title?.valor ||
-    "Equipos que ya trabajan con más claridad.";
-  const description =
-    config?.testimonials_description?.valor ||
-    "Una propuesta pensada para simplificar la operación real, no para sumar complejidad.";
+  const badge = config?.testimonials_badge?.valor || BADGE;
+  const title = config?.testimonials_title?.valor || TITLE;
+  const description = config?.testimonials_description?.valor || DESCRIPTION;
 
   return (
     <section
@@ -103,12 +133,7 @@ export function TestimonialsSection({ testimonials = [], config = {} }) {
           <div className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/[0.82] px-4 py-2 shadow-[0_10px_30px_rgba(10,37,64,0.07)] backdrop-blur-xl">
             <MessageSquareQuote className="h-4 w-4 text-[var(--balto-action)]" />
             <span className="h-4 w-px bg-slate-200" />
-            <img
-              src={logoMark}
-              alt=""
-              aria-hidden="true"
-              className="h-4 w-4 object-contain opacity-80"
-            />
+
             <span className="text-sm font-medium text-[var(--balto-action)]">
               {badge}
             </span>
@@ -138,12 +163,7 @@ export function TestimonialsSection({ testimonials = [], config = {} }) {
                 className="group relative flex h-full flex-col overflow-hidden rounded-[30px] border border-white/80 bg-white/[0.86] p-7 shadow-[0_18px_55px_rgba(10,37,64,0.08)] backdrop-blur-xl transition duration-300 hover:-translate-y-1.5 hover:border-[rgba(0,85,187,0.22)] hover:shadow-[0_24px_70px_rgba(10,37,64,0.13)]"
               >
                 <div className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-[rgba(0,85,187,0.35)] to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
-                <img
-                  src={logoMark}
-                  alt=""
-                  aria-hidden="true"
-                  className="pointer-events-none absolute -right-8 -bottom-10 h-32 w-32 object-contain opacity-[0.024] transition duration-300 group-hover:opacity-[0.06]"
-                />
+
 
                 <div className="relative mb-5 flex items-center justify-between gap-3">
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[rgba(0,85,187,0.09)] text-[var(--balto-action)] ring-1 ring-[rgba(0,85,187,0.10)]">

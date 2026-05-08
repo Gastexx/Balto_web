@@ -1,64 +1,21 @@
 import { useEffect, useState } from "react";
-import BASE_URL from "../../config/config";
-import logo from "../../imagenes/balto.png";
+import logo from "../../imagenes/Balto_Blanco.png";
 
-function safeJsonParse(value, fallback = []) {
-  try {
-    const parsed = JSON.parse(value || "[]");
-    return Array.isArray(parsed) ? parsed : fallback;
-  } catch {
-    return fallback;
-  }
-}
+const NAV_LINKS = [
+  { label: "Inicio", href: "#inicio" },
+  { label: "Beneficios", href: "#features" },
+  { label: "Planes", href: "#pricing" },
+  { label: "Opiniones", href: "#testimonials" },
+];
 
-function normalizeConfig(rawConfig) {
-  if (!rawConfig) return {};
-
-  const result = {};
-
-  Object.entries(rawConfig).forEach(([key, value]) => {
-    if (value && typeof value === "object" && "valor" in value) {
-      result[key] = value.valor ?? "";
-    } else {
-      result[key] = value ?? "";
-    }
-  });
-
-  return result;
-}
+const BRAND_TITLE = "Balto";
+const BRAND_SUBTITLE = "Sistema contable y administrativo";
+const CTA_TEXT = "Contactar";
+const CTA_LINK = "#contacto";
 
 export function Header() {
-  const [config, setConfig] = useState({});
-  const [menu, setMenu] = useState([]);
   const [showHeader, setShowHeader] = useState(true);
   const [lastScroll, setLastScroll] = useState(0);
-
-  useEffect(() => {
-    let active = true;
-
-    const fetchHeader = async () => {
-      try {
-        const res = await fetch(`${BASE_URL}?action=web_home_obtener`);
-        const json = await res.json();
-
-        if (!active) return;
-
-        const data = json?.data ?? json ?? {};
-        const normalized = normalizeConfig(data?.config ?? {});
-
-        setConfig(normalized);
-        setMenu(safeJsonParse(normalized.header_menu, []));
-      } catch (error) {
-        console.error("Error cargando header:", error);
-      }
-    };
-
-    fetchHeader();
-
-    return () => {
-      active = false;
-    };
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -74,14 +31,8 @@ export function Header() {
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScroll]);
-
-  const brandTitle = config?.header_brand_title || "Balto";
-  const brandSubtitle = config?.header_brand_subtitle || "Gestión simple";
-  const ctaText = config?.header_cta_text || "Contactar";
-  const ctaLink = config?.header_cta_link || "#contacto";
 
   return (
     <header
@@ -107,31 +58,31 @@ export function Header() {
 
               <div className="min-w-0 leading-tight">
                 <div className="truncate text-sm font-semibold tracking-tight text-[var(--balto-midnight)]">
-                  {brandTitle}
+                  {BRAND_TITLE}
                 </div>
                 <div className="truncate text-xs font-normal text-slate-500">
-                  {brandSubtitle}
+                  {BRAND_SUBTITLE}
                 </div>
               </div>
             </a>
 
             <nav className="hidden items-center gap-1 rounded-2xl border border-slate-200/70 bg-white/[0.55] p-1 md:flex">
-              {menu.map((item, index) => (
+              {NAV_LINKS.map((item, index) => (
                 <a
-                  key={`${item?.label ?? "item"}-${index}`}
-                  href={item?.href || "#"}
+                  key={`${item.label}-${index}`}
+                  href={item.href}
                   className="rounded-xl px-3.5 py-2 text-sm font-medium text-slate-600 transition duration-200 hover:bg-white hover:text-[var(--balto-action)] hover:shadow-sm"
                 >
-                  {item?.label || `Link ${index + 1}`}
+                  {item.label}
                 </a>
               ))}
             </nav>
 
             <a
-              href={ctaLink}
+              href={CTA_LINK}
               className="inline-flex shrink-0 items-center justify-center rounded-2xl bg-[var(--balto-action)] px-4 py-2.5 text-sm font-medium text-white shadow-[0_16px_34px_rgba(0,85,187,0.24)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_20px_42px_rgba(0,85,187,0.30)]"
             >
-              {ctaText}
+              {CTA_TEXT}
             </a>
           </div>
         </div>
