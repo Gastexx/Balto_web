@@ -1,10 +1,12 @@
 import axios from "axios";
+import API_BASE_URL from "../config/config";
 
 const API = axios.create({
-  baseURL: "http://localhost:3001/api.php",
+  baseURL: API_BASE_URL,
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
+    "X-Requested-With": "XMLHttpRequest",
   },
 });
 
