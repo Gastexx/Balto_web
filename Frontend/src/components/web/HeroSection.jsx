@@ -1,47 +1,91 @@
 import { motion } from "framer-motion";
-import { BadgeCheck, BarChart3, ShieldCheck, ArrowRight } from "lucide-react";
+import {
+  BadgeCheck,
+  BarChart3,
+  ShieldCheck,
+  ArrowRight,
+} from "lucide-react";
 import logoMark from "../../imagenes/balto.png";
 
-const BADGE = "Gestión contable moderna para empresas y estudios";
-const TITULO = "Centralizá ventas, compras y reportes en un solo sistema.";
-const SUBTITULO =
-  "Balto simplifica tu operación diaria con módulos claros, reportes útiles y una experiencia rápida para equipos que necesitan orden y control real.";
-const CTA_PRIMARIO_TEXTO = "Ver planes";
-const CTA_PRIMARIO_LINK = "#pricing";
-const CTA_SECUNDARIO_TEXTO = "Explorar beneficios";
-const CTA_SECUNDARIO_LINK = "#features";
-
-const HIGHLIGHTS = [
-  { icon: BadgeCheck, text: "Implementación simple" },
-  { icon: BarChart3, text: "Reportes en tiempo real" },
-  { icon: ShieldCheck, text: "Datos organizados y seguros" },
-];
+function getValue(field, fallback = "") {
+  if (field == null) return fallback;
+  if (typeof field === "string" || typeof field === "number") return field;
+  if (typeof field === "object") {
+    if ("valor" in field) return field.valor ?? fallback;
+    if ("value" in field) return field.value ?? fallback;
+  }
+  return fallback;
+}
 
 const fadeUp = {
   hidden: { opacity: 0, y: 34 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] },
+    transition: {
+      duration: 0.75,
+      ease: [0.22, 1, 0.36, 1],
+    },
   },
 };
 
-export function HeroSection() {
+export function HeroSection({ config }) {
+  const badge = getValue(
+    config?.hero_badge ?? config?.badge,
+    "Gestión contable moderna para empresas y estudios"
+  );
+
+  const titulo = getValue(
+    config?.hero_titulo ?? config?.titulo,
+    "Centralizá ventas, compras y reportes en un solo sistema."
+  );
+
+  const subtitulo = getValue(
+    config?.hero_subtitulo ?? config?.subtitulo,
+    "Balto simplifica tu operación diaria con módulos claros, reportes útiles y una experiencia rápida para equipos que necesitan orden y control real."
+  );
+
+  const ctaPrimarioTexto = getValue(
+    config?.hero_cta_primario_texto ?? config?.cta_primario_texto,
+    "Ver planes"
+  );
+
+  const ctaPrimarioLink = getValue(
+    config?.hero_cta_primario_link ?? config?.cta_primario_link,
+    "#pricing"
+  );
+
+  const ctaSecundarioTexto = getValue(
+    config?.hero_cta_secundario_texto ?? config?.cta_secundario_texto,
+    "Explorar beneficios"
+  );
+
+  const ctaSecundarioLink = getValue(
+    config?.hero_cta_secundario_link ?? config?.cta_secundario_link,
+    "#features"
+  );
+
+  const highlights = [
+    { icon: BadgeCheck, text: "Implementación simple" },
+    { icon: BarChart3, text: "Reportes en tiempo real" },
+    { icon: ShieldCheck, text: "Datos organizados y seguros" },
+  ];
+
   return (
     <section
       id="inicio"
-      className="relative overflow-hidden bg-[#f7f9fc] py-20 sm:py-24 lg:py-28"
+      className="relative isolate overflow-hidden bg-[#f7f9fc] pb-20 pt-32 sm:pb-24 sm:pt-36 lg:pb-28 lg:pt-40"
     >
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(0,85,187,0.08),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(10,37,64,0.05),transparent_34%)]" />
-        <div className="absolute left-0 top-0 h-72 w-72 rounded-full bg-[var(--balto-action)]/8 blur-[120px]" />
-        <div className="absolute right-0 top-24 h-64 w-64 rounded-full bg-slate-300/20 blur-[120px]" />
-        <div className="absolute inset-0 opacity-[0.04] [background-image:radial-gradient(#0A2540_1px,transparent_1px)] [background-size:22px_22px]" />
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(0,85,187,0.10),transparent_33%),radial-gradient(circle_at_bottom_right,rgba(10,37,64,0.07),transparent_34%)]" />
+        <div className="absolute left-[-6rem] top-0 h-96 w-96 rounded-full bg-[rgba(0,85,187,0.10)] blur-[130px]" />
+        <div className="absolute right-[-4rem] top-28 h-80 w-80 rounded-full bg-[rgba(10,37,64,0.08)] blur-[125px]" />
+        <div className="absolute inset-0 opacity-[0.045] [background-image:linear-gradient(rgba(10,37,64,0.55)_1px,transparent_1px),linear-gradient(90deg,rgba(10,37,64,0.55)_1px,transparent_1px)] [background-size:44px_44px]" />
         <img
           src={logoMark}
           alt=""
           aria-hidden="true"
-          className="absolute -right-12 top-28 hidden h-72 w-72 object-contain opacity-[0.035] sm:block lg:right-10 lg:h-96 lg:w-96"
+          className="absolute left-1/2 top-28 hidden h-[420px] w-[420px] -translate-x-1/2 object-contain opacity-[0.022] lg:block"
         />
       </div>
 
@@ -52,48 +96,49 @@ export function HeroSection() {
           animate="visible"
           className="mx-auto max-w-4xl text-center"
         >
-          <div className="inline-flex items-center gap-2 rounded-full border border-[var(--balto-border)] bg-white/80 px-4 py-2 shadow-sm backdrop-blur-md">
-            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--balto-midnight)]/5">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/[0.82] px-3 py-2 shadow-[0_10px_30px_rgba(10,37,64,0.07)] backdrop-blur-xl sm:px-4">
+            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[var(--balto-midnight)] shadow-sm">
               <img
                 src={logoMark}
                 alt=""
                 aria-hidden="true"
-                className="h-4 w-4 object-contain opacity-90"
+                className="h-4 w-4 object-contain opacity-95"
               />
             </span>
+
             <span className="text-sm font-medium text-[var(--balto-action)]">
-              {BADGE}
+              {badge}
             </span>
           </div>
 
-          <h1 className="mx-auto mt-6 max-w-4xl text-4xl font-semibold tracking-[-0.03em] text-[var(--balto-midnight)] sm:text-5xl lg:text-6xl">
-            {TITULO}
+          <h1 className="mx-auto mt-7 max-w-5xl text-4xl font-semibold tracking-[-0.045em] text-[var(--balto-midnight)] sm:text-5xl lg:text-7xl">
+            {titulo}
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-[var(--balto-muted)] sm:text-lg">
-            {SUBTITULO}
+            {subtitulo}
           </p>
 
           <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
             <a
-              href={CTA_PRIMARIO_LINK}
-              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[var(--balto-action)] px-5 py-3.5 text-sm font-medium text-white shadow-[0_16px_40px_rgba(0,85,187,0.22)] transition hover:-translate-y-0.5 hover:opacity-95"
+              href={ctaPrimarioLink}
+              className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-[var(--balto-action)] px-5 py-3.5 text-sm font-medium text-white shadow-[0_18px_44px_rgba(0,85,187,0.25)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_54px_rgba(0,85,187,0.32)]"
             >
-              {CTA_PRIMARIO_TEXTO}
-              <ArrowRight size={16} />
+              {ctaPrimarioTexto}
+              <ArrowRight size={16} className="transition duration-300 group-hover:translate-x-0.5" />
             </a>
 
             <a
-              href={CTA_SECUNDARIO_LINK}
-              className="inline-flex items-center justify-center rounded-2xl border border-[var(--balto-border)] bg-white/80 px-5 py-3.5 text-sm font-medium text-slate-700 shadow-[0_10px_30px_rgba(15,23,42,0.05)] transition hover:bg-white"
+              href={ctaSecundarioLink}
+              className="inline-flex items-center justify-center rounded-2xl border border-slate-200/80 bg-white/[0.82] px-5 py-3.5 text-sm font-medium text-slate-700 shadow-[0_12px_34px_rgba(15,23,42,0.06)] backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:bg-white hover:text-[var(--balto-midnight)]"
             >
-              {CTA_SECUNDARIO_TEXTO}
+              {ctaSecundarioTexto}
             </a>
           </div>
         </motion.div>
 
-        <div className="mx-auto mt-12 grid max-w-5xl gap-4 sm:grid-cols-3">
-          {HIGHLIGHTS.map(({ icon: Icon, text }, i) => (
+        <div className="mx-auto mt-14 grid max-w-5xl gap-4 sm:grid-cols-3">
+          {highlights.map(({ icon: Icon, text }, i) => (
             <motion.div
               key={text}
               initial={{ opacity: 0, y: 26 }}
@@ -103,16 +148,17 @@ export function HeroSection() {
                 delay: 0.15 + i * 0.1,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="group relative overflow-hidden rounded-[24px] border border-white/70 bg-white/80 p-5 text-center shadow-[0_12px_35px_rgba(15,23,42,0.06)] backdrop-blur-md transition hover:-translate-y-1"
+              className="group relative overflow-hidden rounded-[26px] border border-white/80 bg-white/[0.76] p-5 text-center shadow-[0_16px_42px_rgba(15,23,42,0.07)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:bg-white"
             >
+              <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[rgba(0,85,187,0.35)] to-transparent" />
               <img
                 src={logoMark}
                 alt=""
                 aria-hidden="true"
-                className="pointer-events-none absolute -right-5 -bottom-7 h-20 w-20 object-contain opacity-[0.035] transition duration-300 group-hover:opacity-[0.06]"
+                className="pointer-events-none absolute -bottom-9 -right-8 h-28 w-28 object-contain opacity-[0.025] transition duration-300 group-hover:opacity-[0.055]"
               />
 
-              <div className="relative mx-auto mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--balto-action)]/10 text-[var(--balto-action)]">
+              <div className="relative mx-auto mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-[rgba(0,85,187,0.09)] text-[var(--balto-action)] ring-1 ring-[rgba(0,85,187,0.08)] transition duration-300 group-hover:scale-105">
                 <Icon size={19} strokeWidth={2.1} />
               </div>
 

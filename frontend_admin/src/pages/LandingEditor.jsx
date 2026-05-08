@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import AdminLayout from "../components/admin/layout/AdminLayout";
 import PlansEditor from "../components/web/planes/PlansEditor";
 import { apiUrl } from "../config/config";
+import { BadgeCheck } from "lucide-react";
+import logoMark from "../assets/balto.png";
 
 const ENDPOINTS = {
   load: "web_home_obtener",
@@ -201,10 +203,9 @@ export default function LandingEditor() {
     return (
       <AdminLayout>
         <div className="space-y-4">
-          <div className="h-8 w-72 animate-pulse rounded-xl bg-slate-200" />
-          <div className="h-40 animate-pulse rounded-3xl bg-slate-200" />
-          <div className="h-40 animate-pulse rounded-3xl bg-slate-200" />
-          <div className="h-40 animate-pulse rounded-3xl bg-slate-200" />
+          <div className="balto-glass-card h-40 animate-pulse rounded-[30px]" />
+          <div className="balto-soft-card h-52 animate-pulse rounded-[30px]" />
+          <div className="balto-soft-card h-52 animate-pulse rounded-[30px]" />
         </div>
       </AdminLayout>
     );
@@ -213,14 +214,29 @@ export default function LandingEditor() {
   return (
     <AdminLayout>
       <div className="space-y-6">
-        <div>
-          <h1 className="text-3xl font-medium text-[var(--balto-text,#0f172a)]">
-            Editor de Planes
-          </h1>
-          <p className="mt-2 text-sm font-normal text-slate-500">
-            Las demás secciones de la web quedaron fijas. Desde acá solamente modificás los planes que se muestran desde la base de datos.
-          </p>
-        </div>
+        <section className="balto-glass-card balto-animate-up relative overflow-hidden rounded-[32px] px-6 py-7 sm:px-8">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(0,85,187,0.10),transparent_34%)]" />
+          <img
+            src={logoMark}
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-10 -top-12 h-52 w-52 object-contain opacity-[0.035]"
+          />
+
+          <div className="relative max-w-3xl">
+            <span className="inline-flex items-center gap-2 rounded-full border border-[var(--balto-border)] bg-white/80 px-4 py-2 text-sm font-medium text-[var(--balto-action)] shadow-sm backdrop-blur-md">
+              <BadgeCheck size={16} />
+              Balto Web
+            </span>
+
+            <h1 className="mt-5 text-4xl font-semibold tracking-[-0.035em] text-[var(--balto-midnight)] lg:text-5xl">
+              Editor de Planes
+            </h1>
+            <p className="mt-4 max-w-2xl text-base leading-8 text-[var(--balto-muted)]">
+              Las demás secciones de la web quedaron fijas. Desde acá solamente modificás los planes que se muestran desde la base de datos.
+            </p>
+          </div>
+        </section>
 
         <PlansEditor
           plans={plans}

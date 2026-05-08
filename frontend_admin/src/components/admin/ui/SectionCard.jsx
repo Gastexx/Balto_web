@@ -1,30 +1,36 @@
-export default function SectionCard({
-  title,
-  subtitle,
-  children,
-  actions,
-}) {
+import logoMark from "../../../assets/balto.png";
+
+export default function SectionCard({ title, subtitle, children, actions }) {
   return (
-    <section className="rounded-3xl border border-black/5 bg-white shadow-sm">
-      {/* Header */}
-      <div className="border-b border-black/5 px-6 py-5">
-        <h2 className="text-xl font-medium text-[var(--balto-text,#0f172a)]">
+    <section className="balto-soft-card relative overflow-hidden rounded-[30px]">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(0,85,187,0.08),transparent_30%)]" />
+      <img
+        src={logoMark}
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-12 -top-16 h-48 w-48 object-contain opacity-[0.035]"
+      />
+
+      <div className="relative border-b border-[var(--balto-border,#d8e0ec)]/70 px-6 py-5 sm:px-7">
+        <span className="inline-flex items-center rounded-full border border-[var(--balto-border,#d8e0ec)] bg-white/[0.07]5 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-[var(--balto-action,#0055BB)]">
+          Balto Admin
+        </span>
+
+        <h2 className="mt-3 text-2xl font-semibold tracking-[-0.02em] text-[var(--balto-midnight,#0a2540)]">
           {title}
         </h2>
 
         {subtitle && (
-          <p className="mt-1 text-sm font-normal text-slate-500">
+          <p className="mt-2 max-w-2xl text-sm font-normal leading-6 text-[var(--balto-muted,#5b6472)]">
             {subtitle}
           </p>
         )}
       </div>
 
-      {/* Content */}
-      <div className="px-6 py-6">{children}</div>
+      <div className="relative px-5 py-6 sm:px-7">{children}</div>
 
-      {/* Actions */}
       {actions && (
-        <div className="flex justify-end border-t border-black/5 px-6 py-4">
+        <div className="relative flex flex-col gap-3 border-t border-[var(--balto-border,#d8e0ec)]/70 bg-white/[0.45] px-5 py-4 sm:flex-row sm:justify-end sm:px-7">
           {actions}
         </div>
       )}

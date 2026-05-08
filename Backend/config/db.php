@@ -8,7 +8,7 @@ declare(strict_types=1);
 $host = 'localhost';
 $dbname = 'balto_web';
 $user = 'root';
-$pass = 'brunoball516';
+$pass = 'Gastex2233';
 
 try {
     $pdo = new PDO(
