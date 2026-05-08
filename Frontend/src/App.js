@@ -20,6 +20,17 @@ function normalizeHomePlans(payload) {
   return [];
 }
 
+function buildApiUrl(action, params = {}) {
+  const base = BASE_URL.replace(/\/$/, "");
+
+  const query = new URLSearchParams({
+    action,
+    ...params,
+  });
+
+  return `${base}/api.php?${query.toString()}`;
+}
+
 export default function App() {
   const [plans, setPlans] = useState(PRICING_CONTENT.fallbackPlans);
 
@@ -36,7 +47,8 @@ export default function App() {
 
     const fetchPlans = async () => {
       try {
-        const url = `${BASE_URL}?action=web_home_obtener`;
+        const url = buildApiUrl("web_home_obtener");
+
         const res = await fetch(url, {
           method: "GET",
           headers: {
@@ -45,7 +57,13 @@ export default function App() {
         });
 
         const text = await res.text();
-        const json = text ? JSON.parse(text) : {};
+
+        let json = {};
+        try {
+          json = text ? JSON.parse(text) : {};
+        } catch (parseError) {
+          throw new Error("La API no devolvió un JSON válido.");
+        }
 
         if (!res.ok || json?.exito === false) {
           throw new Error(json?.mensaje || `Error HTTP ${res.status}`);
