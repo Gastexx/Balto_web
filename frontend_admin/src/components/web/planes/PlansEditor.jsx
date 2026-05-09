@@ -2,8 +2,8 @@ import { Check, Plus, Save, Trash2 } from "lucide-react";
 import SectionCard from "../../admin/ui/SectionCard";
 import Input from "../../admin/ui/Input";
 import Button from "../../admin/ui/Button";
-import logoWhite from "../../../assets/Balto_Blanco.png";
-import logoMark from "../../../assets/balto.png";
+import logoWhite from "../../../imagenes/Balto_Blanco.png";
+import logoMark from "../../../imagenes/balto.png";
 
 function PlanPreview({ plan, index }) {
   const featured = index === 1 || /pro|premium|empresa/i.test(plan?.nombre || "");

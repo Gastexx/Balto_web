@@ -1,8 +1,10 @@
 import axios from "axios";
-import API_BASE_URL from "../config/config";
+import BASE_URL from "../config/config";
+
+const API_FILE_URL = `${BASE_URL.replace(/\/$/, "")}/api.php`;
 
 const API = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: API_FILE_URL,
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",

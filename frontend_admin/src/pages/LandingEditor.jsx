@@ -2,14 +2,22 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import AdminLayout from "../components/admin/layout/AdminLayout";
 import PlansEditor from "../components/web/planes/PlansEditor";
-import { apiUrl } from "../config/config";
+import BASE_URL from "../config/config";
 import { BadgeCheck } from "lucide-react";
-import logoMark from "../assets/balto.png";
+import logoMark from "../imagenes/balto.png";
+import { useToast } from "../components/Global/ToastContext";
 
 const ENDPOINTS = {
   load: "web_home_obtener",
   savePlans: "admin_planes_guardar",
 };
+
+function buildApiUrl(action, params = {}) {
+  const base = BASE_URL.replace(/\/$/, "");
+  const query = new URLSearchParams({ action, ...params });
+
+  return `${base}/api.php?${query.toString()}`;
+}
 
 function normalizePlan(plan, index = 0) {
   let incluye = [];
@@ -41,12 +49,13 @@ function getAuthHeaders() {
 export default function LandingEditor() {
   const { section } = useParams();
   const navigate = useNavigate();
+  const { showToast } = useToast();
 
   const [loading, setLoading] = useState(true);
   const [plans, setPlans] = useState([]);
   const [savingPlans, setSavingPlans] = useState(false);
 
-  const loadUrl = useMemo(() => apiUrl(ENDPOINTS.load), []);
+  const loadUrl = useMemo(() => buildApiUrl(ENDPOINTS.load), []);
 
   useEffect(() => {
     if (!section || section !== "planes") {
@@ -73,8 +82,7 @@ export default function LandingEditor() {
             : []
         );
       } catch (error) {
-        console.error("Error cargando planes:", error);
-        alert("No se pudieron cargar los planes.");
+        showToast("No se pudieron cargar los planes.", "error");
       } finally {
         if (active) setLoading(false);
       }
@@ -107,6 +115,7 @@ export default function LandingEditor() {
   };
 
   const addPlanIncluye = (planIndex) => {
+    showToast("Ítem agregado correctamente.", "exito");
     setPlans((prev) =>
       prev.map((plan, i) => {
         if (i !== planIndex) return plan;
@@ -120,6 +129,7 @@ export default function LandingEditor() {
   };
 
   const removePlanIncluye = (planIndex, incluyeIndex) => {
+    showToast("Ítem eliminado correctamente.", "exito");
     setPlans((prev) =>
       prev.map((plan, i) => {
         if (i !== planIndex) return plan;
@@ -135,6 +145,7 @@ export default function LandingEditor() {
   };
 
   const addPlan = () => {
+    showToast("Plan agregado correctamente.", "exito");
     setPlans((prev) => [
       ...prev,
       {
@@ -148,6 +159,7 @@ export default function LandingEditor() {
   };
 
   const removePlan = (index) => {
+    showToast("Plan eliminado correctamente.", "exito");
     setPlans((prev) => prev.filter((_, i) => i !== index));
   };
 
@@ -169,7 +181,7 @@ export default function LandingEditor() {
         })),
       };
 
-      const res = await fetch(apiUrl(ENDPOINTS.savePlans), {
+      const res = await fetch(buildApiUrl(ENDPOINTS.savePlans), {
         method: "POST",
         headers: getAuthHeaders(),
         credentials: "include",
@@ -190,10 +202,9 @@ export default function LandingEditor() {
           : plans
       );
 
-      alert("Planes guardados correctamente.");
+      showToast("Planes guardados correctamente.", "exito");
     } catch (error) {
-      console.error(error);
-      alert(error.message || "Error al guardar planes.");
+      showToast(error.message || "Error al guardar planes.", "error");
     } finally {
       setSavingPlans(false);
     }

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   ChevronDown,
   ExternalLink,
@@ -9,12 +9,15 @@ import {
   PanelLeftClose,
   PanelLeftOpen,
 } from "lucide-react";
-import logoWhite from "../../../assets/Balto_Blanco.png";
-import logoMark from "../../../assets/balto.png";
+import logoWhite from "../../../imagenes/Balto_Blanco.png";
+import logoMark from "../../../imagenes/balto.png";
+import { useToast } from "../../Global/ToastContext";
 
 export default function AdminLayout({ children }) {
   const admin = JSON.parse(localStorage.getItem("balto_admin") || "{}");
   const location = useLocation();
+  const navigate = useNavigate();
+  const { showToast } = useToast();
 
   const [openBaltoWeb, setOpenBaltoWeb] = useState(true);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -36,7 +39,8 @@ export default function AdminLayout({ children }) {
 
   const handleLogout = () => {
     localStorage.removeItem("balto_admin");
-    window.location.href = "/";
+    showToast("Sesión cerrada correctamente.", "exito");
+    setTimeout(() => navigate("/", { replace: true }), 450);
   };
 
   const sections = [{ label: "Planes", href: "/admin/landing/planes" }];
@@ -245,7 +249,7 @@ export default function AdminLayout({ children }) {
             </div>
 
             <a
-              href="https://panel.balto.com.ar/"
+              href="https://balto.com.ar/"
               target="_blank"
               rel="noreferrer"
               className="hidden items-center gap-2 rounded-2xl border border-[var(--balto-border)] bg-white/[0.07]5 px-4 py-2.5 text-sm font-medium text-slate-700 shadow-[0_10px_30px_rgba(15,23,42,0.05)] transition hover:-translate-y-0.5 hover:bg-white md:inline-flex"

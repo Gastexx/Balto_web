@@ -1,4 +1,4 @@
-import logoMark from "../../../assets/balto.png";
+import logoMark from "../../../imagenes/balto.png";
 
 export default function SectionCard({ title, subtitle, children, actions }) {
   return (

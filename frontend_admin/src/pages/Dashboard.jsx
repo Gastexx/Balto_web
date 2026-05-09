@@ -1,7 +1,7 @@
 import AdminLayout from "../components/admin/layout/AdminLayout";
 import { Link } from "react-router-dom";
 import { ArrowRight, BadgeCheck, BarChart3, Globe, ShieldCheck } from "lucide-react";
-import logoMark from "../assets/balto.png";
+import logoMark from "../imagenes/balto.png";
 
 export default function Dashboard() {
   const admin = JSON.parse(localStorage.getItem("balto_admin") || "{}");
@@ -43,7 +43,7 @@ export default function Dashboard() {
               </Link>
 
               <a
-                href="https://panel.balto.com.ar/"
+                href="https://balto.com.ar/"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center justify-center rounded-2xl border border-[var(--balto-border)] bg-white/80 px-5 py-3.5 text-sm font-medium text-slate-700 shadow-[0_10px_30px_rgba(15,23,42,0.05)] transition hover:bg-white"

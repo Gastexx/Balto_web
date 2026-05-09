@@ -2,11 +2,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, Lock, ShieldCheck, User, Sparkles } from "lucide-react";
 import API from "../api/api";
-import logoWhite from "../assets/Balto_Blanco.png";
-import logoMark from "../assets/balto.png";
+import logoWhite from "../imagenes/Balto_Blanco.png";
+import logoMark from "../imagenes/balto.png";
+import { useToast } from "../components/Global/ToastContext";
 
 export default function Login() {
   const navigate = useNavigate();
+  const { showToast } = useToast();
 
   const [usuario, setUsuario] = useState("");
   const [password, setPassword] = useState("");
@@ -25,16 +27,17 @@ export default function Login() {
 
       if (res?.data?.exito) {
         localStorage.setItem("balto_admin", JSON.stringify(res.data.admin));
+        showToast("Ingreso exitoso.", "exito");
         navigate("/admin/dashboard");
       } else {
-        alert(res?.data?.mensaje || "Credenciales incorrectas");
+        showToast(res?.data?.mensaje || "Credenciales incorrectas", "error");
       }
     } catch (error) {
-      console.error("ERROR LOGIN:", error);
-      alert(
+      showToast(
         error?.response?.data?.mensaje ||
           error?.message ||
-          "Error al iniciar sesión"
+          "Error al iniciar sesión",
+        "error"
       );
     } finally {
       setLoading(false);
@@ -67,7 +70,7 @@ export default function Login() {
             </h1>
 
             <p className="mt-6 max-w-xl text-base leading-8 text-[var(--balto-muted)]">
-              Panel privado para mantener los planes publicados actualizados, respetando la estética minimalista de Balto.
+              Panel privado para mantener los planes publicados actualizados.
             </p>
 
             <div className="mt-10 grid max-w-2xl gap-4 sm:grid-cols-3">

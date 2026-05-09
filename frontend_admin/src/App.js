@@ -3,10 +3,12 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import LandingEditor from "./pages/LandingEditor";
 import ProtectedRoute from "./components/admin/auth/ProtectedRoute";
+import { ToastProvider } from "./components/Global/ToastContext";
 
 export default function App() {
   return (
-    <Routes>
+    <ToastProvider>
+      <Routes>
       <Route path="/" element={<Login />} />
 
       <Route
@@ -35,6 +37,7 @@ export default function App() {
           </ProtectedRoute>
         }
       />
-    </Routes>
+      </Routes>
+    </ToastProvider>
   );
 }
