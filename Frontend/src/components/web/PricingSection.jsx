@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Check, Sparkles, ArrowRight, Star } from "lucide-react";
+import { Check, ArrowRight, Star } from "lucide-react";
 import logoWhite from "../../imagenes/Balto_Blanco.png";
 
 function pick(obj, keys, fallback = "") {
@@ -22,11 +22,7 @@ function toFeatureArray(value) {
         if (typeof item === "string") return item.trim();
 
         if (item && typeof item === "object") {
-          return pick(
-            item,
-            ["texto", "titulo", "nombre", "descripcion"],
-            ""
-          ).trim();
+          return pick(item, ["texto", "titulo", "nombre", "descripcion"], "").trim();
         }
 
         return "";
@@ -58,11 +54,7 @@ function normalizePlan(plan, index = 0) {
     price: normalizePrice(
       pick(plan, ["precio", "price", "valor", "monto", "importe"], "")
     ),
-    period: pick(
-      plan,
-      ["periodo", "period", "frecuencia", "billing_period"],
-      "/mes"
-    ),
+    period: pick(plan, ["periodo", "period", "frecuencia", "billing_period"], "/mes"),
     currency: pick(plan, ["moneda", "currency", "simbolo_moneda"], "$"),
     description: pick(plan, ["descripcion", "description", "texto"], ""),
     features: toFeatureArray(plan?.incluye),
@@ -104,8 +96,7 @@ export function PricingSection({ plans = [], config = {} }) {
         .sort((a, b) => a.order - b.order)
     : [];
 
-  const badge =
-    config?.pricing_badge?.valor ?? config?.pricing_badge ?? "Planes";
+  const badge = config?.pricing_badge?.valor ?? config?.pricing_badge ?? "Planes";
 
   const title =
     config?.pricing_title?.valor ??
@@ -116,6 +107,13 @@ export function PricingSection({ plans = [], config = {} }) {
     config?.pricing_description?.valor ??
     config?.pricing_description ??
     "Opciones pensadas para acompañar desde los primeros pasos hasta operaciones más exigentes.";
+
+  const plansGridClass =
+    normalizedPlans.length === 1
+      ? "mx-auto max-w-md grid-cols-1"
+      : normalizedPlans.length === 2
+      ? "mx-auto max-w-5xl grid-cols-1 md:grid-cols-2"
+      : "lg:grid-cols-3";
 
   return (
     <section
@@ -128,6 +126,7 @@ export function PricingSection({ plans = [], config = {} }) {
         <div className="absolute bottom-0 left-0 h-72 w-72 rounded-full bg-[rgba(0,85,187,0.10)] blur-[120px]" />
         <div className="absolute right-0 top-1/3 h-60 w-60 rounded-full bg-[rgba(255,255,255,0.04)] blur-[100px]" />
         <div className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(rgba(255,255,255,0.30)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.30)_1px,transparent_1px)] [background-size:44px_44px]" />
+
         <img
           src={logoWhite}
           alt=""
@@ -144,23 +143,25 @@ export function PricingSection({ plans = [], config = {} }) {
           whileInView="visible"
           viewport={{ once: true, amount: 0.25 }}
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-4 py-2 text-sm font-medium text-white backdrop-blur-xl">
+          <div className="flex flex-col items-center gap-3">
+            <span className="h-px w-16 bg-gradient-to-r from-transparent via-[var(--balto-action)] to-transparent opacity-90" />
 
-            <Sparkles size={14} className="text-[var(--balto-action)]" />
-            {badge}
-          </span>
+            <span className="text-[13px] font-semibold uppercase tracking-[0.32em] text-white/80 sm:text-sm">
+              {badge}
+            </span>
+          </div>
 
           <h2 className="mt-6 text-3xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
             {title}
           </h2>
 
-          <p className="mx-auto mt-5  text-[15px] leading-7 text-white/[0.65] sm:text-base">
+          <p className="mx-auto mt-5 text-[15px] leading-7 text-white/[0.65] sm:text-base">
             {description}
           </p>
         </motion.div>
 
         <motion.div
-          className="mt-16 grid gap-7 lg:grid-cols-3"
+          className={`mt-16 grid gap-7 ${plansGridClass}`}
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -181,12 +182,11 @@ export function PricingSection({ plans = [], config = {} }) {
                       : "border-white/10 bg-white/[0.045] shadow-[0_22px_66px_rgba(0,0,0,0.34)] backdrop-blur-xl hover:bg-white/[0.065]"
                   }`}
                 >
-
-
                   {featured && (
                     <>
                       <div className="pointer-events-none absolute inset-x-10 top-0 h-24 rounded-full bg-[rgba(0,85,187,0.24)] blur-3xl" />
-                      <div className="absolute left-1/2 top-4 -translate-x-1/2">
+
+                      <div className="absolute right-6 top-6 z-20">
                         <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-white backdrop-blur-md">
                           <Star size={12} className="fill-white" />
                           Recomendado
@@ -198,7 +198,7 @@ export function PricingSection({ plans = [], config = {} }) {
                   <div className="pointer-events-none absolute inset-0 rounded-[32px] bg-[linear-gradient(180deg,rgba(255,255,255,0.09),transparent_24%,transparent_78%,rgba(255,255,255,0.03))]" />
 
                   <div className="relative z-10 flex h-full flex-col">
-                    <div className={featured ? "pt-7" : ""}>
+                    <div >
                       <span
                         className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-[11px] font-medium uppercase tracking-[0.16em] ${
                           featured
@@ -214,11 +214,12 @@ export function PricingSection({ plans = [], config = {} }) {
                       </h3>
 
                       <p className="mt-3 min-h-[48px] text-sm leading-6 text-white/60">
-                        {plan.description || "Solución preparada para mejorar tu operación diaria."}
+                        {plan.description ||
+                          "Solución preparada para mejorar tu operación diaria."}
                       </p>
                     </div>
 
-                    <div className="mt-8 rounded-[24px] border border-white/10 bg-black/20 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+                    <div className="mt-0 rounded-[24px] border border-white/10 bg-black/20 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
                       {plan.price ? (
                         <>
                           <div className="flex flex-wrap items-end gap-2">

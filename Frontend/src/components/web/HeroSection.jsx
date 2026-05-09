@@ -56,14 +56,14 @@ export function HeroSection() {
             animate="visible"
             className="relative"
           >
-            <div className="relative mx-auto max-w-[430px] overflow-hidden rounded-[30px] border border-white/80 bg-white/70 p-6 shadow-[0_24px_70px_rgba(15,23,42,0.08)] backdrop-blur-xl sm:rounded-[34px] sm:p-9 lg:mx-0">
-              <div className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-[rgba(0,85,187,0.35)] to-transparent" />
+            <div >
+              <div />
 
               <div className="flex justify-center">
                 <img
                   src={logoBaltoAzul}
                   alt="Balto Sistema Contable"
-                  className="h-auto w-full max-w-[300px] object-contain drop-shadow-[0_18px_35px_rgba(10,37,64,0.10)] sm:max-w-[360px]"
+                  className="h-auto w-full max-w-[300px] object-contain drop-shadow-[0_18px_35px_rgba(10,37,64,0.10)] sm:max-w-[400px]"
                 />
               </div>
             </div>
@@ -75,7 +75,7 @@ export function HeroSection() {
             animate="visible"
             className="text-center lg:text-left"
           >
-            <h1 className="mx-auto max-w-5xl text-4xl font-semibold tracking-[-0.045em] text-[var(--balto-midnight)] sm:text-5xl lg:mx-0 lg:text-7xl">
+            <h1 className="mx-auto max-w-5xl text-4xl font-semibold leading-[1.04] tracking-[-0.045em] text-[var(--balto-midnight)] sm:text-5xl sm:leading-[1.02] lg:mx-0">
               {TITULO}
             </h1>
 

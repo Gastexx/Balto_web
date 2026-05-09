@@ -130,11 +130,9 @@ export function TestimonialsSection({ testimonials = TESTIMONIALS, config = {} }
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
         >
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/[0.82] px-4 py-2 shadow-[0_10px_30px_rgba(10,37,64,0.07)] backdrop-blur-xl">
-            <MessageSquareQuote className="h-4 w-4 text-[var(--balto-action)]" />
-            <span className="h-4 w-px bg-slate-200" />
-
-            <span className="text-sm font-medium text-[var(--balto-action)]">
+          <div className="flex flex-col items-center gap-3">
+            <span className="h-px w-16 bg-gradient-to-r from-transparent via-[var(--balto-action)] to-transparent opacity-80" />
+            <span className="text-[13px] font-semibold uppercase tracking-[0.32em] text-[var(--balto-action)] sm:text-sm">
               {badge}
             </span>
           </div>

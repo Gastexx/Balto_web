@@ -106,11 +106,11 @@ export function FeaturesSection({ features }) {
       : fallbackFeatures;
 
   return (
-    <section id="features" className="relative isolate overflow-hidden bg-white py-20 sm:py-10">
+    <section id="features" className="relative isolate overflow-hidden bg-[#f7f9fc] py-20 sm:py-10">
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#f7f9fc] to-white" />
-        <div className="absolute -left-28 top-20 h-80 w-80 rounded-full bg-[rgba(0,85,187,0.06)] blur-[125px]" />
-        <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-[rgba(10,37,64,0.05)] blur-[120px]" />
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white to-transparent" />
+        <div className="absolute right-[-5rem] top-24 h-80 w-80 rounded-full bg-[rgba(0,85,187,0.08)] blur-[120px]" />
+        <div className="absolute -left-28 bottom-0 h-80 w-80 rounded-full bg-[rgba(10,37,64,0.05)] blur-[120px]" />
         <img
           src={logoMark}
           alt=""
@@ -127,15 +127,9 @@ export function FeaturesSection({ features }) {
           whileInView="visible"
           viewport={{ once: true, amount: 0.35 }}
         >
-          <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 shadow-[0_10px_30px_rgba(10,37,64,0.06)]">
-            <img
-              src={logoMark}
-              alt=""
-              aria-hidden="true"
-              className="h-4 w-4 object-contain opacity-80"
-            />
-
-            <span className="text-sm font-medium text-[var(--balto-action)]">
+          <div className="flex flex-col items-center gap-3">
+            <span className="h-px w-16 bg-gradient-to-r from-transparent via-[var(--balto-action)] to-transparent opacity-80" />
+            <span className="text-[13px] font-semibold uppercase tracking-[0.32em] text-[var(--balto-action)] sm:text-sm">
               Beneficios
             </span>
           </div>
@@ -161,7 +155,7 @@ export function FeaturesSection({ features }) {
             <motion.article
               key={`${title}-${index}`}
               variants={fadeUp}
-              className="group relative flex min-h-[260px] flex-col overflow-hidden rounded-[30px] border border-slate-200/75 bg-white p-6 shadow-[0_18px_55px_rgba(10,37,64,0.07)] transition duration-300 hover:-translate-y-1.5 hover:border-[rgba(0,85,187,0.22)] hover:shadow-[0_24px_70px_rgba(10,37,64,0.12)]"
+              className="group relative flex min-h-[260px] flex-col overflow-hidden rounded-[30px] border border-white/80 bg-white/[0.86] p-6 shadow-[0_18px_55px_rgba(10,37,64,0.08)] backdrop-blur-xl transition duration-300 hover:-translate-y-1.5 hover:border-[rgba(0,85,187,0.22)] hover:shadow-[0_24px_70px_rgba(10,37,64,0.13)]"
             >
               <div className="pointer-events-none absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[rgba(0,85,187,0.40)] to-transparent opacity-0 transition duration-300 group-hover:opacity-100" />
               <img
