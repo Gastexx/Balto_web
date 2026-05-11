@@ -3,12 +3,15 @@ import { ChevronUp } from "lucide-react";
 import logo from "../../imagenes/Balto_Blanco.png";
 
 const BRAND = "BALTO";
-const SUBTITLE = "Sistema contable y administrativo";
 const DESCRIPTION = "Una solución orientada a orden, control y crecimiento.";
 const EMAIL = "baltosistemascontables@gmail.com";
 const PHONE = "+54 9 3564 67-2341";
 const ADDRESS = "Argentina";
 const COPYRIGHT = "© 2026 Balto. Todos los derechos reservados.";
+
+const WHATSAPP_NUMBER = "5493564672341";
+const WHATSAPP_MESSAGE =
+    "Hola, vengo desde el sitio web de Balto. Me interesa conocer más sobre el sistema y sus planes. ¿Podrían brindarme más información?";
 
 const PRODUCT_LINKS = [
   { label: "Beneficios", href: "#features" },
@@ -39,6 +42,15 @@ export function Footer() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const openWhatsApp = () => {
+    const mensaje = encodeURIComponent(WHATSAPP_MESSAGE);
+
+    window.open(
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${mensaje}`,
+      "_blank"
+    );
+  };
+
   return (
     <footer
       id="contacto"
@@ -49,6 +61,7 @@ export function Footer() {
         <div className="absolute bottom-0 left-0 h-72 w-72 rounded-full bg-[rgba(0,85,187,0.11)] blur-[120px]" />
         <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-white/[0.035] blur-[110px]" />
         <div className="absolute inset-0 opacity-[0.045] [background-image:linear-gradient(rgba(255,255,255,0.30)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.30)_1px,transparent_1px)] [background-size:44px_44px]" />
+
         <img
           src={logo}
           alt=""
@@ -73,9 +86,6 @@ export function Footer() {
                 <p className="text-sm font-semibold tracking-wide text-white">
                   {BRAND}
                 </p>
-                <p className="text-xs text-white/50">
-                  {SUBTITLE}
-                </p>
               </div>
             </div>
 
@@ -86,9 +96,7 @@ export function Footer() {
             <div className="mt-7 flex items-center gap-3">
               <button
                 type="button"
-                onClick={() =>
-                  window.open("https://wa.me/5493564672341", "_blank")
-                }
+                onClick={openWhatsApp}
                 className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.045] text-xl text-white/[0.65] transition duration-300 hover:-translate-y-0.5 hover:bg-white/[0.08] hover:text-[var(--balto-action)]"
                 title="WhatsApp"
                 aria-label="Abrir WhatsApp de Balto"
@@ -114,9 +122,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold text-white">
-              Producto
-            </h4>
+            <h4 className="text-sm font-semibold text-white">Producto</h4>
 
             <ul className="mt-5 space-y-3 text-sm text-white/[0.62]">
               {PRODUCT_LINKS.map((link) => (
@@ -133,21 +139,27 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold text-white">
-              Contacto
-            </h4>
+            <h4 className="text-sm font-semibold text-white">Contacto</h4>
 
             <ul className="mt-5 space-y-3 text-sm text-white/[0.62]">
               <li>
-                <a className="transition hover:text-white" href={`mailto:${EMAIL}`}>
+                <a
+                  className="transition hover:text-white"
+                  href={`mailto:${EMAIL}`}
+                >
                   {EMAIL}
                 </a>
               </li>
+
               <li>
-                <a className="transition hover:text-white" href={`tel:${PHONE.replace(/\s/g, "")}`}>
+                <a
+                  className="transition hover:text-white"
+                  href={`tel:${PHONE.replace(/\s/g, "")}`}
+                >
                   {PHONE}
                 </a>
               </li>
+
               <li>{ADDRESS}</li>
             </ul>
           </div>
@@ -163,6 +175,7 @@ export function Footer() {
               aria-hidden="true"
               className="h-4 w-4 object-contain opacity-45"
             />
+
             <p>{COPYRIGHT}</p>
           </div>
 
@@ -180,19 +193,19 @@ export function Footer() {
         </div>
       </div>
 
-<button
-  type="button"
-  onClick={scrollToTop}
-  aria-label="Volver arriba"
-  title="Volver arriba"
-  className={`fixed bottom-5 right-5 z-[60] flex h-12 w-12 items-center justify-center rounded-2xl border border-white/70 bg-[var(--balto-action)] text-white shadow-[0_18px_42px_rgba(0,85,187,0.32)] ring-1 ring-[rgba(255,255,255,0.28)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:bg-white hover:text-[var(--balto-action)] hover:shadow-[0_22px_55px_rgba(10,37,64,0.30)] focus:outline-none focus:ring-4 focus:ring-[rgba(0,85,187,0.20)] sm:bottom-7 sm:right-7 ${
-    showScrollTop
-      ? "translate-y-0 opacity-100 pointer-events-auto"
-      : "translate-y-4 opacity-0 pointer-events-none"
-  }`}
->
-  <ChevronUp className="h-5 w-5" strokeWidth={2.4} />
-</button>
+      <button
+        type="button"
+        onClick={scrollToTop}
+        aria-label="Volver arriba"
+        title="Volver arriba"
+        className={`fixed bottom-5 right-5 z-[60] flex h-12 w-12 items-center justify-center rounded-2xl border border-white/70 bg-[var(--balto-action)] text-white shadow-[0_18px_42px_rgba(0,85,187,0.32)] ring-1 ring-[rgba(255,255,255,0.28)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:bg-white hover:text-[var(--balto-action)] hover:shadow-[0_22px_55px_rgba(10,37,64,0.30)] focus:outline-none focus:ring-4 focus:ring-[rgba(0,85,187,0.20)] sm:bottom-7 sm:right-7 ${
+          showScrollTop
+            ? "translate-y-0 opacity-100 pointer-events-auto"
+            : "translate-y-4 opacity-0 pointer-events-none"
+        }`}
+      >
+        <ChevronUp className="h-5 w-5" strokeWidth={2.4} />
+      </button>
     </footer>
   );
 }
