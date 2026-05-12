@@ -7,6 +7,7 @@ const NAV_LINKS = [
   { label: "Beneficios", href: "#features" },
   { label: "Planes", href: "#pricing" },
   { label: "Opiniones", href: "#testimonials" },
+  { label: "Contacto", href: "#contacto" },
 ];
 
 const BRAND_TITLE = "Balto";

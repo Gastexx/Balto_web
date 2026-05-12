@@ -2,6 +2,17 @@ import { motion } from "framer-motion";
 import { Check, ArrowRight, Star } from "lucide-react";
 import logoWhite from "../../imagenes/Balto_Blanco.png";
 
+const WHATSAPP_NUMBER = "5493564672341";
+
+function getWhatsAppPlanLink(planName = "") {
+  const planText = planName ? ` Quería consultar por el plan ${planName}.` : "";
+  const message = encodeURIComponent(
+    `Hola, vengo desde el sitio web de Balto.${planText} Me interesa conocer más sobre el sistema y sus planes. ¿Podrían brindarme más información?`
+  );
+
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+}
+
 function pick(obj, keys, fallback = "") {
   if (!obj || typeof obj !== "object") return fallback;
 
@@ -292,7 +303,10 @@ export function PricingSection({ plans = [], config = {} }) {
                     </div>
 
                     <a
-                      href="#contacto"
+                      href={getWhatsAppPlanLink(plan.name)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Consultar por WhatsApp el plan ${plan.name}`}
                       className={`mt-9 inline-flex w-full items-center justify-center gap-2 rounded-2xl px-4 py-3.5 text-sm font-medium transition duration-300 ${
                         featured
                           ? "bg-white text-[#071224] shadow-[0_12px_34px_rgba(255,255,255,0.16)] hover:-translate-y-0.5 hover:opacity-90"

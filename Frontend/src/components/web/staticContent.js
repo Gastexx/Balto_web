@@ -8,7 +8,7 @@ export const HEADER_CONTENT = {
     { label: "Beneficios", href: "#features" },
     { label: "Planes", href: "#pricing" },
     { label: "Opiniones", href: "#testimonials" },
-    { label: "Contactos", href: "#contacto" },
+    { label: "Contacto", href: "#contacto" },
   ],
 };
 
