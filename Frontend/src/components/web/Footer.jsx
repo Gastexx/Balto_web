@@ -54,27 +54,27 @@ export function Footer() {
   return (
     <footer
       id="contacto"
-      className="relative isolate overflow-hidden bg-[#04070d] text-white"
+      className="relative isolate overflow-hidden bg-[#020611] text-white"
     >
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(0,85,187,0.14),transparent_34%)]" />
-        <div className="absolute bottom-0 left-0 h-72 w-72 rounded-full bg-[rgba(0,85,187,0.11)] blur-[120px]" />
-        <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-white/[0.035] blur-[110px]" />
-        <div className="absolute inset-0 opacity-[0.045] [background-image:linear-gradient(rgba(255,255,255,0.30)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.30)_1px,transparent_1px)] [background-size:44px_44px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(0,85,187,0.22),transparent_34%)]" />
+        <div className="absolute bottom-0 left-0 h-72 w-72 rounded-full bg-[rgba(0,85,187,0.18)] blur-[120px]" />
+        <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-white/[0.065] blur-[110px]" />
+        <div className="absolute inset-0 opacity-[0.075] [background-image:linear-gradient(rgba(255,255,255,0.30)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.30)_1px,transparent_1px)] [background-size:44px_44px]" />
 
         <img
           src={logo}
           alt=""
           aria-hidden="true"
-          className="absolute -right-16 top-8 hidden h-80 w-80 object-contain opacity-[0.025] lg:block"
+          className="absolute -right-16 top-8 hidden h-80 w-80 object-contain opacity-[0.12] lg:block"
         />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-        <div className="grid gap-8 rounded-[34px] border border-white/10 bg-white/[0.035] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.30)] backdrop-blur-xl sm:p-8 lg:grid-cols-[1.35fr_0.85fr_0.95fr] lg:p-10">
+        <div className="grid gap-8 rounded-[34px] border border-white/20 bg-white/[0.085] p-6 shadow-[0_34px_96px_rgba(0,0,0,0.42)] backdrop-blur-xl sm:p-8 lg:grid-cols-[1.35fr_0.85fr_0.95fr] lg:p-10">
           <div>
             <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/[0.08] p-2 ring-1 ring-white/10 backdrop-blur">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/[0.12] p-2 ring-1 ring-white/20 backdrop-blur">
                 <img
                   src={logo}
                   alt="Balto"
@@ -89,7 +89,7 @@ export function Footer() {
               </div>
             </div>
 
-            <p className="mt-5 max-w-md text-sm leading-6 text-white/[0.62]">
+            <p className="mt-5 max-w-md text-sm leading-6 text-white/[0.78]">
               {DESCRIPTION}
             </p>
 
@@ -97,7 +97,7 @@ export function Footer() {
               <button
                 type="button"
                 onClick={openWhatsApp}
-                className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.045] text-xl text-white/[0.65] transition duration-300 hover:-translate-y-0.5 hover:bg-white/[0.08] hover:text-[var(--balto-action)]"
+                className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/20 bg-white/[0.075] text-xl text-white/[0.86] transition duration-300 hover:-translate-y-0.5 hover:bg-white/[0.14] hover:text-[var(--balto-action)]"
                 title="WhatsApp"
                 aria-label="Abrir WhatsApp de Balto"
               >
@@ -112,7 +112,7 @@ export function Footer() {
                     "_blank"
                   )
                 }
-                className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.045] text-xl text-white/[0.65] transition duration-300 hover:-translate-y-0.5 hover:bg-white/[0.08] hover:text-[var(--balto-action)]"
+                className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/20 bg-white/[0.075] text-xl text-white/[0.86] transition duration-300 hover:-translate-y-0.5 hover:bg-white/[0.14] hover:text-[var(--balto-action)]"
                 title="Instagram"
                 aria-label="Abrir Instagram de Balto"
               >
@@ -124,7 +124,7 @@ export function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-white">Producto</h4>
 
-            <ul className="mt-5 space-y-3 text-sm text-white/[0.62]">
+            <ul className="mt-5 space-y-3 text-sm text-white/[0.78]">
               {PRODUCT_LINKS.map((link) => (
                 <li key={`${link.label}-${link.href}`}>
                   <a
@@ -141,7 +141,7 @@ export function Footer() {
           <div>
             <h4 className="text-sm font-semibold text-white">Contacto</h4>
 
-            <ul className="mt-5 space-y-3 text-sm text-white/[0.62]">
+            <ul className="mt-5 space-y-3 text-sm text-white/[0.78]">
               <li>
                 <a
                   className="transition hover:text-white"
@@ -166,14 +166,14 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="relative border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-6 text-sm text-white/50 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+      <div className="relative border-t border-white/18">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-6 text-sm text-white/70 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
           <div className="flex items-center gap-2">
             <img
               src={logo}
               alt=""
               aria-hidden="true"
-              className="h-4 w-4 object-contain opacity-45"
+              className="h-4 w-4 object-contain opacity-70"
             />
 
             <p>{COPYRIGHT}</p>
