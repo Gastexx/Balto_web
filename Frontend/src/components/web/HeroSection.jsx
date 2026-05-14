@@ -2,9 +2,9 @@ import { motion } from "framer-motion";
 import { BadgeCheck, BarChart3, ShieldCheck } from "lucide-react";
 import logoBaltoAzul from "../../imagenes/Logo_Balto_Azul.png";
 
-const TITULO = "Centralizá ventas, compras y reportes en un solo sistema.";
+const TITULO = "La potencia de un sistema experto, la agilidad que tu comercio pide.";
 const SUBTITULO =
-  "Balto simplifica tu operación diaria con módulos claros, reportes útiles y una experiencia rápida para equipos que necesitan orden y control real.";
+  "Centraliza tus ventas, compras y stock en una plataforma diseñada para el orden absoluto. En Balto no solo te damos tecnología rápida; te acompañamos con soporte técnico y contable para que tu única preocupación sea ver crecer tu negocio.";
 
 const HIGHLIGHTS = [
   { icon: BadgeCheck, text: "Implementación simple" },

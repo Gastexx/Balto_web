@@ -5,7 +5,7 @@ import logoMark from "../../imagenes/balto.png";
 const BADGE = "Opiniones";
 const TITLE = "Equipos que ya trabajan con más claridad.";
 const DESCRIPTION =
-  "Una propuesta pensada para simplificar la operación real, no para sumar complejidad.";
+  "Potencia tu ritmo de trabajo con Balto, una solución pensada para simplificar tu operación diaria, para que el control de tu negocio sea una tarea fluida.";
 
 const TESTIMONIALS = [
   {
@@ -124,7 +124,7 @@ export function TestimonialsSection({ testimonials = TESTIMONIALS, config = {} }
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="mx-auto max-w-2xl text-center"
+          className="mx-auto text-center"
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"

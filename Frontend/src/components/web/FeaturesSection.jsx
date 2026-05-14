@@ -121,7 +121,7 @@ export function FeaturesSection({ features }) {
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="mx-auto max-w-2xl text-center"
+          className="mx-auto  text-center"
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
@@ -139,8 +139,7 @@ export function FeaturesSection({ features }) {
           </h2>
 
           <p className="mt-4 text-base leading-7 text-slate-700 sm:text-lg">
-            Una interfaz prolija, rápida y preparada para crecer con tu operación
-            sin complicar tu día a día.
+            Tecnología simple, rápida y adaptable para impulsar el crecimiento de tu comercio.
           </p>
         </motion.div>
 
