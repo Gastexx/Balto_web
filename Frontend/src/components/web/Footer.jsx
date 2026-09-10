@@ -104,20 +104,20 @@ export function Footer() {
                 <i className="fa-brands fa-whatsapp"></i>
               </button>
 
-              <button
-                type="button"
-                onClick={() =>
-                  window.open(
-                    "https://www.instagram.com/baltosistemas?igsh=MXd3cXNqNXo1ODR2bg==",
-                    "_blank"
-                  )
-                }
-                className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/20 bg-white/[0.075] text-xl text-white/[0.86] transition duration-300 hover:-translate-y-0.5 hover:bg-white/[0.14] hover:text-[var(--balto-action)]"
-                title="Instagram"
-                aria-label="Abrir Instagram de Balto"
-              >
-                <i className="fa-brands fa-instagram"></i>
-              </button>
+<button
+  type="button"
+  onClick={() =>
+    window.open(
+      "https://www.instagram.com/balto.sc?stkn=MWF0YjhvaWRwMGp6bw%3D%3D",
+      "_blank"
+    )
+  }
+  className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/20 bg-white/[0.075] text-xl text-white/[0.86] transition duration-300 hover:-translate-y-0.5 hover:bg-white/[0.14] hover:text-[var(--balto-action)]"
+  title="Instagram"
+  aria-label="Abrir Instagram de Balto"
+>
+  <i className="fa-brands fa-instagram"></i>
+</button>
             </div>
           </div>
 
