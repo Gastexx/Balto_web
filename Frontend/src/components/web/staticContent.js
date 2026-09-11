@@ -65,29 +65,39 @@ export const PRICING_CONTENT = {
   fallbackPlans: [
     {
       id: 22,
-      nombre: "Inicial",
-      precio: "150.000",
-      incluye: "Ventas y compras\nClientes y proveedores\nSoporte por email",
+      nombre: "BALTO Servicios",
+      precio: "120.000",
+      periodo: "/mes",
+      descripcion:
+        "Gestión integral para empresas y profesionales de servicios, con administración operativa, financiera y facturación electrónica vinculada con ARCA.",
+      incluye:
+        "Gestión de servicios, materiales e insumos\nAsignación de trabajadores a servicios y operaciones\nControl y actualización de stock\nAdministración de clientes y proveedores\nRegistro completo de ingresos y egresos\nPresupuestos y seguimiento de operaciones\nFacturación electrónica vinculada con ARCA\nGestión de cuentas corrientes y saldos\nGestión y seguimiento de cheques y eCheqs\nFlujo de caja y control financiero\nHistorial, filtros y reportes de movimientos\nConfiguración de categorías, unidades y calendario",
       destacado: 0,
       orden: 1,
       activo: 1,
     },
     {
       id: 23,
-      nombre: "Profesional",
-      precio: "320.000",
+      nombre: "BALTO Comercio",
+      precio: "140.000",
+      periodo: "/mes",
+      descripcion:
+        "Gestión comercial completa para centralizar ventas, compras, stock, facturación y finanzas de tu negocio.",
       incluye:
-        "Todo lo del plan Inicial\nReportes y paneles\nPrioridad de soporte\nhola",
-      destacado: 0,
+        "Gestión completa de ventas y compras\nFacturación electrónica vinculada con ARCA\nNotas de crédito y registro integral de movimientos\nControl de stock, productos e inventario\nAdministración de clientes y proveedores\nCuentas corrientes y seguimiento de saldos\nGestión y seguimiento de cheques y eCheqs\nPresupuestos y seguimiento comercial\nFlujo de caja y análisis financiero\nGestión completa de medios de pago\nReportes, métricas e historial de movimientos\nControl integral administrativo y financiero",
+      destacado: 1,
       orden: 2,
       activo: 1,
     },
     {
       id: 24,
-      nombre: "Empresa",
-      precio: "470.000",
+      nombre: "BALTO Comercio Pro",
+      precio: "160.000",
+      periodo: "/mes",
+      descripcion:
+        "Toda la gestión de BALTO Comercio, con Tienda Nube y códigos de barras integrados para agilizar la operación comercial.",
       incluye:
-        "Flujos personalizados\nAcompañamiento en implementación\nEscalabilidad",
+        "Todo lo incluido en BALTO Comercio\nIntegración y sincronización con Tienda Nube\nProductos, ventas y stock conectados con la tienda online\nGeneración de códigos de barras para productos\nPosibilidad de asociar códigos de barras existentes a cada producto\nLectura de códigos de barras para agilizar ventas, compras y movimientos de stock\nGestión centralizada del comercio físico y online",
       destacado: 0,
       orden: 3,
       activo: 1,

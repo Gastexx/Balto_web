@@ -3,6 +3,33 @@ import { Check, ArrowRight, Star } from "lucide-react";
 
 const WHATSAPP_NUMBER = "5493564672341";
 
+const CURRENT_PLAN_DESCRIPTIONS = {
+  "balto servicios":
+    "Gestión integral para empresas y profesionales de servicios, con administración operativa, financiera y facturación electrónica vinculada con ARCA.",
+  "balto comercio":
+    "Gestión comercial completa para centralizar ventas, compras, stock, facturación y finanzas de tu negocio.",
+  "balto comercio pro":
+    "Toda la gestión de BALTO Comercio, con Tienda Nube y códigos de barras integrados para agilizar la operación comercial.",
+};
+
+function getCurrentPlanDescription(planName = "", fallback = "") {
+  const normalizedName = String(planName).trim().toLowerCase();
+
+  if (normalizedName.includes("comercio pro")) {
+    return CURRENT_PLAN_DESCRIPTIONS["balto comercio pro"];
+  }
+
+  if (normalizedName.includes("comercio")) {
+    return CURRENT_PLAN_DESCRIPTIONS["balto comercio"];
+  }
+
+  if (normalizedName.includes("servicios")) {
+    return CURRENT_PLAN_DESCRIPTIONS["balto servicios"];
+  }
+
+  return fallback;
+}
+
 function getWhatsAppPlanLink(planName = "") {
   const planText = planName ? ` Quería consultar por el plan ${planName}.` : "";
   const message = encodeURIComponent(
@@ -168,7 +195,7 @@ export function PricingSection({ plans = [], config = {} }) {
         </motion.div>
 
         <motion.div
-          className={`mt-16 grid gap-20 ${plansGridClass}`}
+          className={`mt-16 grid gap-10 ${plansGridClass}`}
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -183,7 +210,7 @@ export function PricingSection({ plans = [], config = {} }) {
                 <motion.article
                   key={plan.id ?? plan.name}
                   variants={fadeUp}
-                  className={`group relative flex h-full flex-col overflow-hidden rounded-[32px] border p-7 transition duration-300 hover:-translate-y-2 sm:p-8 ${
+                  className={`group relative flex h-full flex-col overflow-hidden rounded-[32px] border p-5 transition duration-300 hover:-translate-y-2 sm:p-6 ${
                     featured
                       ? "z-10 border-2 border-[rgba(0,85,187,0.78)] bg-[#f8fbff] shadow-[0_34px_96px_rgba(0,85,187,0.30),0_0_0_9px_rgba(0,85,187,0.075)] ring-1 ring-white/90"
                       : "border-[rgba(10,37,64,0.16)] bg-[#fbfdff] shadow-[0_24px_72px_rgba(10,37,64,0.15)] hover:border-[rgba(0,85,187,0.44)] hover:shadow-[0_30px_88px_rgba(10,37,64,0.20)]"
@@ -236,8 +263,11 @@ export function PricingSection({ plans = [], config = {} }) {
                       </h3>
 
                       <p className="mt-3 min-h-[48px] text-sm leading-6 text-slate-700">
-                        {plan.description ||
-                          "Solución preparada para mejorar tu operación diaria."}
+                        {getCurrentPlanDescription(
+                          plan.name,
+                          plan.description ||
+                            "Gestión integral para empresas y profesionales de servicios, con control operativo, financiero y facturación electrónica vinculada con ARCA."
+                        )}
                       </p>
                     </div>
 
