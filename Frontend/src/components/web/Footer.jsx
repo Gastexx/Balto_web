@@ -5,7 +5,7 @@ import logo from "../../imagenes/Balto_Blanco.png";
 const BRAND = "BALTO";
 const DESCRIPTION = "Una solución orientada a orden, control y crecimiento.";
 const EMAIL = "baltosistemascontables@gmail.com";
-const PHONE = "+54 9 3564 67-2341";
+const PHONE = "+54 9 3564 50-4131";
 const ADDRESS = "Argentina";
 const COPYRIGHT = "© 2026 Balto. Todos los derechos reservados.";
 

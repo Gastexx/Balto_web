@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Check, ArrowRight, Star } from "lucide-react";
 
-const WHATSAPP_NUMBER = "5493564672341";
+const WHATSAPP_NUMBER = "3564504131";
 
 const CURRENT_PLAN_DESCRIPTIONS = {
   "balto servicios":
