@@ -3,9 +3,22 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../admin/planes.php';
 
+function agrupar_planes_por_sistema(array $planes): array
+{
+    $agrupados = array_fill_keys(PLANES_SISTEMAS, []);
+
+    foreach ($planes as $plan) {
+        $agrupados[$plan['sistema']][] = $plan;
+    }
+
+    return $agrupados;
+}
+
 function web_planes_listar(PDO $pdo): void
 {
-    $planes = obtener_planes_saas($pdo, true);
+    // Filtro opcional: ?sistema=servicios|comercio
+    $sistema = isset($_GET['sistema']) ? normalizar_sistema_plan($_GET['sistema']) : null;
+    $planes = obtener_planes_saas($pdo, true, $sistema);
 
     echo json_encode([
         'exito' => true,
@@ -25,6 +38,8 @@ function web_home_obtener(PDO $pdo): void
         'data' => [
             'plans' => $planes,
             'planes' => $planes,
+            // Mismos planes agrupados por sistema (servicios / comercio).
+            'planes_por_sistema' => agrupar_planes_por_sistema($planes),
         ],
     ], JSON_UNESCAPED_UNICODE);
 }

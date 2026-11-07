@@ -19,7 +19,9 @@
 }
 
 .toast-icon {
-  font-size: 1.4rem;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
   margin-right: 10px;
 }
 

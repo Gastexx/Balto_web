@@ -57,49 +57,123 @@ export const FEATURES_CONTENT = {
   ],
 };
 
+// Sistemas / pestañas de la sección de planes. El valor `id` coincide con la
+// columna `planes_saas.sistema` de la base de datos.
+export const PLAN_SYSTEMS = [
+  { id: "servicios", label: "BALTO Servicios", shortLabel: "Servicios" },
+  { id: "comercio", label: "BALTO Comercio", shortLabel: "Comercio" },
+];
+
 export const PRICING_CONTENT = {
   badge: "Planes",
   title: "Opciones simples para cada etapa.",
   description:
     "Empezá con una base sólida y escalá cuando tu operación lo necesite.",
+  // Respaldo usado solo si la API no responde. Los datos reales se
+  // administran desde el panel (action admin_planes_guardar).
   fallbackPlans: [
     {
-      id: 22,
-      nombre: "BALTO Servicios",
-      precio: "120.000",
-      periodo: "/mes",
+      id: "fallback-servicios-1",
+      sistema: "servicios",
+      nombre: "Servicios Profesionales",
+      precio: "95.000",
       descripcion:
-        "Gestión integral para empresas y profesionales de servicios, con administración operativa, financiera y facturación electrónica vinculada con ARCA.",
-      incluye:
-        "Gestión de servicios, materiales e insumos\nAsignación de trabajadores a servicios y operaciones\nControl y actualización de stock\nAdministración de clientes y proveedores\nRegistro completo de ingresos y egresos\nPresupuestos y seguimiento de operaciones\nFacturación electrónica vinculada con ARCA\nGestión de cuentas corrientes y saldos\nGestión y seguimiento de cheques y eCheqs\nFlujo de caja y control financiero\nHistorial, filtros y reportes de movimientos\nConfiguración de categorías, unidades y calendario",
+        "Orientado a profesionales que venden su tiempo o conocimiento.",
+      incluye: [
+        "Clientes y proveedores",
+        "Facturación electrónica vinculada con ARCA",
+        "Registro de ingresos y egresos",
+        "Presupuestos y seguimiento de trabajos",
+        "Cuentas corrientes y saldos",
+        "Cobros por medio de pago, cheques y eCheqs",
+        "Flujo de caja y control financiero",
+        "Historial, filtros y reportes",
+      ],
       destacado: 0,
       orden: 1,
       activo: 1,
     },
     {
-      id: 23,
-      nombre: "BALTO Comercio",
-      precio: "140.000",
-      periodo: "/mes",
+      id: "fallback-servicios-2",
+      sistema: "servicios",
+      nombre: "Servicios con Insumos",
+      precio: "130.000",
       descripcion:
-        "Gestión comercial completa para centralizar ventas, compras, stock, facturación y finanzas de tu negocio.",
-      incluye:
-        "Gestión completa de ventas y compras\nFacturación electrónica vinculada con ARCA\nNotas de crédito y registro integral de movimientos\nControl de stock, productos e inventario\nAdministración de clientes y proveedores\nCuentas corrientes y seguimiento de saldos\nGestión y seguimiento de cheques y eCheqs\nPresupuestos y seguimiento comercial\nFlujo de caja y análisis financiero\nGestión completa de medios de pago\nReportes, métricas e historial de movimientos\nControl integral administrativo y financiero",
-      destacado: 1,
+        "Orientado a negocios que trabajan con materiales o equipos de trabajadores.",
+      incluye: [
+        "Todo lo del plan Servicios Profesionales",
+        "Materiales e insumos con control de stock",
+        "Compras a proveedores que actualizan el stock",
+        "Asignación de trabajadores a cada servicio",
+        "Costo y ganancia por trabajo u obra",
+      ],
+      destacado: 0,
       orden: 2,
       activo: 1,
     },
     {
-      id: 24,
-      nombre: "BALTO Comercio Pro",
-      precio: "160.000",
-      periodo: "/mes",
+      id: "fallback-servicios-3",
+      sistema: "servicios",
+      nombre: "Servicios con Venta",
+      precio: "180.000",
+      nota: "Combina BALTO Servicios y BALTO Comercio.",
       descripcion:
-        "Toda la gestión de BALTO Comercio, con Tienda Nube y códigos de barras integrados para agilizar la operación comercial.",
-      incluye:
-        "Todo lo incluido en BALTO Comercio\nIntegración y sincronización con Tienda Nube\nProductos, ventas y stock conectados con la tienda online\nGeneración de códigos de barras para productos\nPosibilidad de asociar códigos de barras existentes a cada producto\nLectura de códigos de barras para agilizar ventas, compras y movimientos de stock\nGestión centralizada del comercio físico y online",
+        "Orientado a negocios que realizan trabajos y además venden productos.",
+      incluye: [
+        "Todo lo del plan Servicios con Insumos",
+        "Catálogo de productos con precio de venta",
+        "Stock de productos separado de los insumos",
+        "Venta de mostrador sin abrir un trabajo",
+        "Servicios y productos en un mismo comprobante",
+        "Ganancia separada por servicios y productos",
+      ],
       destacado: 0,
       orden: 3,
+      activo: 1,
+    },
+    {
+      id: "fallback-comercio-1",
+      sistema: "comercio",
+      nombre: "BALTO Comercio",
+      precio: "160.000",
+      descripcion:
+        "Gestión comercial completa para centralizar ventas, compras, stock, facturación y finanzas.",
+      incluye: [
+        "Gestión completa de ventas y compras",
+        "Facturación electrónica vinculada con ARCA",
+        "Notas de crédito y registro de movimientos",
+        "Control de stock, productos e inventario",
+        "Administración de clientes y proveedores",
+        "Cuentas corrientes y seguimiento de saldos",
+        "Gestión y seguimiento de cheques y eCheqs",
+        "Presupuestos y seguimiento comercial",
+        "Flujo de caja y análisis financiero",
+        "Gestión completa de medios de pago",
+        "Reportes, métricas e historial de movimientos",
+        "Control integral administrativo y financiero",
+      ],
+      destacado: 0,
+      orden: 1,
+      activo: 1,
+    },
+    {
+      id: "fallback-comercio-2",
+      sistema: "comercio",
+      nombre: "BALTO Comercio Pro",
+      precio: "195.000",
+      descripcion:
+        "Para comercios que también venden online o manejan muchos productos.",
+      incluye: [
+        "Todo lo incluido en BALTO Comercio",
+        "Integración y sincronización con Tienda Nube",
+        "Productos, ventas y stock conectados con la tienda online",
+        "Generación de códigos de barras para productos",
+        "Asociación de códigos de barras existentes",
+        "Lectura de códigos para agilizar ventas, compras y stock",
+        "Gestión centralizada del comercio físico y online",
+      ],
+      destacado: 0,
+      orden: 2,
       activo: 1,
     },
   ],

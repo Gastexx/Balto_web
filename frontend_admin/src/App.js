@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import Login from "./pages/Login";
+import Login from "./pages/login";
 import Dashboard from "./pages/Dashboard";
 import LandingEditor from "./pages/LandingEditor";
 import ProtectedRoute from "./components/admin/auth/ProtectedRoute";

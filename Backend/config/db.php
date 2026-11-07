@@ -4,11 +4,12 @@ declare(strict_types=1);
 // backend/config/db.php
 // Ejecutar local:
 // php -S localhost:3001 -t backend
+// php -c "C:\PHP\php1\php.ini" -S localhost:3001
 
 $host = 'localhost';
 $dbname = 'balto_web';
 $user = 'root';
-$pass = 'brunoball516';
+$pass = 'Gastex2233';
 
 try {
     $pdo = new PDO(
